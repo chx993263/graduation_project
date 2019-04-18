@@ -24,7 +24,7 @@
             </li>
             <li>
             	<a href="https://mail.qq.com/" class="img" target="right"><img src="{% static 'images/email03.png' %}" /></a>
-                <p><a onclick="window.open("https://mail.qq.com/") target="right">邮箱</a></p>
+                <p><a onclick="window.open('https://mail.qq.com/')" target="right">邮箱</a></p>
             </li>
             <li>
             	<a href="mailList.html" class="img" target="right"><img src="{% static 'images/icon02.png' %}" /></a>
@@ -165,12 +165,31 @@
 <div class="article half duty">
 	<div class="wrap-l">
         <div class="title ue-clear">
-            <h2>我的任务</h2>
-            <a href="myrecode.html" class="more" target="right">更多</a>
+            <h2>最近违纪</h2>
+            <p>&nbsp;&nbsp;&nbsp;今日违纪人次：<span style="color: red">{{personNum}}</span>
+            <a href="notice.html" class="more" target="right">更多</a>
+            </p>
+
         </div>
         <div class="content">
-            <table id="table" class="table_style"></table>
+                <table id="example-advanced"  class="tableztree01">
 
+        <tr class="thead_tr"><td style="font-weight: bold;padding-left: 10px;" >学生</td><td style="font-weight: bold">所在班级</td><td style="font-weight: bold">课程</td><td style="font-weight: bold">行为</td><td style="font-weight: bold">时间</td></tr>
+        <tbody>
+            {% block article %}
+                {% for item in noticeList %}
+                    <tr data-tt-id="0" data-tt-parent-id="0">
+                            <td style="padding-left: 10px;">{{item.1}}</td>
+                            <td>{{item.2}}</td>
+                            <td>{{item.3}}</td>
+                            <td>{{item.4}}</td>
+                            <td>{{item.5}}</td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+
+        </tbody>
+    </table>
         </div>
     </div>
 </div>
@@ -178,7 +197,7 @@
 	<div class="wrap-r">
         <div class="title ue-clear">
             <h2>未读邮件</h2>
-            <a href="email.html" class="more" target="right">更多</a>
+            <a href="https://mail.qq.com/" class="more" target="right">更多</a>
         </div>
         <div class="content">
         	<table>

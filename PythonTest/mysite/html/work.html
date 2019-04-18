@@ -50,7 +50,7 @@
                             <td>{{item.2}}</td>
                             <td>{{item.3}}</td>
                             <td>{{item.1}}</td>
-                            <td ><a href="dellog?log_id={{item.0}}">删除</a></td>
+                            <td ><a href="dellog?log_id={{item.0}}" onclick="if(confirm('确认删除吗？')==false)return false;">删除</a></td>
                     </tr>
                 {% endfor %}
             {% endblock %}

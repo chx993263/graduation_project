@@ -131,11 +131,16 @@
 				<li><input type="button" id="modifypwdbtna" value="确认修改密码">
 					<input id="modifypwdcancel" type="button" value="取消">
 			</ul>
-
 		</div>
 		<div></div>
 	</div>
 </body>
+<script type="text/javascript">
+    var msg = {{ msg|safe }};
+    if(msg == 'success'){
+        humane("登录成功！");
+    }
+</script>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery.dialog.js' %}"></script>

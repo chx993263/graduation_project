@@ -81,11 +81,20 @@ def index(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-            return render(request, "login.html")
-        return render(request, "index.html", {"adminName": username})
-    return render(request, "login.html")
+            return render(request, "login.html",{"msg":json.dumps('fail')})
+        return render(request, "index.html", {"adminName": username},{"msg":json.dumps('success')})
+    return render(request, "login.html",{"msg":json.dumps('fail')})
 
+# 主页
 def home(request):
+    noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from performance,student,subject,behavior,class where class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id order by id desc limit 0,3"
+    cur.execute(noticesql)
+    noticeList = cur.fetchall()
+    # 获取今日违纪人数
+    today = getTime.today();
+    personNumsql = "select count(1) from performance where time like \'%"+today+"%\'"
+    cur.execute(personNumsql)
+    personNum = cur.fetchone()[0]
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
             request.session['log_id'])
@@ -97,7 +106,7 @@ def home(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-    return render(request, "home.html")
+    return render(request, "home.html",{"personNum":personNum,"noticeList":noticeList})
 
 # 工作日志
 def worklog(request):
@@ -148,6 +157,7 @@ def dellogs(request):
         for id in ids:
             dellog = "delete from log where id = "+id
             cur.execute(dellog)
+        # 删除log ,不用打印删除记录
         # 提交到数据库执行
         conn.commit()
     except:
@@ -513,7 +523,6 @@ def notice(request):
     info7 = "limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
     str2 = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time {} {} {} {} {} {} {}"
     testSql = str2.format(info1,info2,info3,info4,info5,info6,info7)
-    print(testSql)
     cur.execute(testSql)
     noticeList = cur.fetchall()
     pageinfo = {
@@ -531,19 +540,21 @@ def notice(request):
             # 如果发生错误则回滚
             conn.rollback()
     return render(request, "notice.html",{'date': date,'classid': classid,'likestudent':likestudent, 'actid': actid,'likestudent': likestudent,'classList': classList,'actList': actList,'noticeList': noticeList,'pageinfo': pageinfo})
-# 批量删除 工作日志
+# 批量删除 违纪
 def delacts(request):
     delitems = request.POST['delitems']
     ids = delitems.split(',')
+    print(ids)
     # 开始进行批量删除操作
     try:
         # 执行sql语句
         for id in ids:
-            delp = "delete from performance where id = "+id
-            cur.execute(dellog)
+            deln = "delete from performance where id = "+id
+            cur.execute(deln)
         # 提交到数据库执行
         log = "insert into log(admin,content,date,level) values(\'" + request.session['adminName'] + "\',\'ADMIN:" + \
-              request.session['adminName'] + "done bulk delete on behavioral notice',\'" + getTime.now() + "\',3)"
+              request.session['adminName'] + " done bulk delete on behavioral notice',\'" + getTime.now() + "\',3)"
+        cur.execute(log)
         conn.commit()
     except:
         # 如果发生错误则回滚

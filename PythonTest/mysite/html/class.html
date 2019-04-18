@@ -52,7 +52,7 @@
                     <tr data-tt-id="0" data-tt-parent-id="0">
                             <td ><span class="file"></span>{{item.1}}</td>
                             <td>{{item.2}}</td>
-                            <td > <a href="delclass?class_id={{item.0}}&class_name={{item.1 }}">删除</a> <a href="#" onClick="updatelayer('{{item.0}}')">修改</a></td>
+                            <td > <a href="delclass?class_id={{item.0}}&class_name={{item.1 }}" onclick="if(confirm('确认删除吗？')==false)return false;">删除</a> <a href="#" onClick="updatelayer('{{item.0}}')">修改</a></td>
                     </tr>
                 {% endfor %}
             {% endblock %}

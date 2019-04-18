@@ -93,7 +93,7 @@
                             <td>{{item.5}}</td>
                             <td>{{item.4}}</td>
                             <td>{{item.3}}</td>
-                            <td ><a href="#" onClick="showlayer('{{item.0}}')">查看</a><a href="delstudent?student_id={{item.0}}&student_name={{item.1 }}">删除</a> <a href="#" onClick="updatelayer('{{item.0}}')">修改</a></td>
+                            <td ><a href="#" onClick="showlayer('{{item.0}}')">查看</a><a href="delstudent?student_id={{item.0}}&student_name={{item.1 }}" onclick="if(confirm('确认删除吗？')==false)return false;">删除</a> <a href="#" onClick="updatelayer('{{item.0}}')">修改</a></td>
                     </tr>
                 {% endfor %}
             {% endblock %}

@@ -41,7 +41,7 @@ urlpatterns = [
     # 通告
     path("index/notice.html", view.notice),
     # 批量删除通告
-    path("index/dellogs", view.dellogs),
+    path("index/delacts", view.delacts),
     # 单个删除
     path("index/delact", view.delact),
 

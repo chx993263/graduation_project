@@ -4,8 +4,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link id='theme' rel='stylesheet' href="{% static 'humane/themes/original.css' %}" />
+		<script src="{% static 'humane/humane.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 		<script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
+
 	</head>
 	<body>
 		<form action='/index/' method='POST' >
@@ -41,16 +44,10 @@
 			</div>
 		</form>
 		<script type="text/javascript">
-
+			var msg = {{ msg|safe }};
+			if(msg == 'fail'){
+				humane("账号或密码错误！请重新登录");
+			}
 		</script>
-		<!--<script type="text/javascript">
-			$(document).ready(function(){
-				if (window.PIE) {
-			        $('.rounded').each(function() {
-			            PIE.attach(this);
-			        });
-			    }
-			});
-		</script>-->
 	</body>
 </html>

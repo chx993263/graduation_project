@@ -101,7 +101,7 @@
                             <td>{{item.4}}</td>
                             <td>{{item.5}}</td>
                             <td>{{item.6}}</td>
-                            <td ><a href="#" onClick="showlayer('{{item.0}}')">修改</a><a href="delcurl?curlid={{item.0}}&classname={{item.3}}&subjectname={{item.4}}">注销该课程</a></td>
+                            <td ><a href="#" onClick="showlayer('{{item.0}}')">修改</a><a href="delcurl?curlid={{item.0}}&classname={{item.3}}&subjectname={{item.4}}" onclick="if(confirm('确认删除吗？')==false)return false;">注销该课程</a></td>
                     </tr>
                 {% endfor %}
             {% endblock %}
