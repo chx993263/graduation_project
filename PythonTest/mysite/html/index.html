@@ -1,0 +1,144 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<meta charset="utf-8">
+<link id='theme' rel='stylesheet' href="{% static 'humane/themes/original.css' %}" />
+<script src="{% static 'humane/humane.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dialog.css' %}" />
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<style>
+/*    .layui-layer-title{background:url("{% static 'images/righttitlebig.png' %}") repeat-x;font-weight:bold;color:#46647e;
+        border:1px solid #c1d3de;height: 33px;line-height: 33px;}*/
+</style>
+<title>OA管理系统</title>
+</head>
+<body>
+<div id="container">
+	<div id="hd">
+    	<div class="hd-wrap ue-clear">
+        	<div class="top-light"></div>
+            <h1 class="logo"></h1>
+            <div class="login-info ue-clear">
+                <div class="welcome ue-clear"><span>欢迎您,</span><a href="javascript:void(0)" class="user-name">{{adminName }}</a></div>
+                <div class="login-msg ue-clear">
+                    <a href="javascript:void(0)" class="msg-txt">消息</a>
+                    <a href="javascript:void(0)" class="msg-num">10</a>
+                </div>
+            </div>
+            <div class="toolbar ue-clear">
+                <a href="home.html" class="home-btn" target="right">首页</a>
+                <a class="home-btn1" target="right" id="modifypwdbtn">修改密码</a>
+                <a href="javascript:void(0)" class="quit-btn exit home-btn">退出</a>
+            </div>
+        </div>
+    </div>
+    <div id="bd">
+    	<div class="wrap ue-clear">
+        	<div class="sidebar">
+            	<h2 class="sidebar-header"><p>功能导航</p></h2>
+                <ul class="nav">
+                	<li class="office current"><div class="nav-header"><a href="home.html" target="right" class="ue-clear"><span>首页</span><i class="icon"></i></a></div></li>
+                    <li class="land"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>日常办公</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="work.html" target="right">操作日志</a></li>
+                            <li><a href="absence.html" target="right">缺勤记录</a></li>
+                            <li><a href="mesage.html" target="right">我的信息</a></li>
+                            <li><a href="schedule.html" target="right">课程管理</a></li>
+
+
+
+                        </ul>
+                    </li>
+
+                    <li class="train"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>课表管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="schedule.html" target="right">课程表查询</a></li>
+                            <li><a href="curriculum.html" target="right">课表管理</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="email"><div class="nav-header"><a href="mesage.html"class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
+                    <li class="list_m"><div class="nav-header"><a href="mailList.html" class="ue-clear" target="right"><span>通讯录管理</span><i class="icon"></i></a></div></li>
+                    <li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>行为通告</span><i class="icon"></i></a></div></li>
+
+
+
+
+                    <li class="dossier"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>师生管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="student.html" target="right">学生管理</a></li>
+                            <li><a href="teacher.html" target="right">教师管理</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="part"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>系统管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="class.html" target="right">班级管理</a></li>
+                            <li><a href="subject.html" target="right">课程管理</a></li>
+                            <li><a href="behavior.html" target="right">行为管理</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+            	<iframe src="home.html" id="iframe" width="100%" height="100%" frameborder="0" name="right" style="min-width: 1100px"></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="ft" class="foot_div">
+
+            <span>xxxxxx</span>
+            <em>Attendance&nbsp;System</em>
+
+        <div class="ft-right">
+            <span>NJIT</span>
+            <em>南工程考勤管理系统</a></em>
+        </div>
+    </div>
+</div>
+<div class="exitDialog">
+	<div class="dialog-content">
+    	<div class="ui-dialog-icon"></div>
+        <div class="ui-dialog-text">
+        	<p class="dialog-content">你确定要退出系统？</p>
+            <p class="tips">如果是请点击“确定”，否则点“取消”</p>
+            
+            <div class="buttons">
+                <input type="button" class="button long2 ok" value="确定" />
+                <input type="button" class="button long2 normal" value="取消" />
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- 修改密码 -->
+	<div id="modifydiv" class="modifydiv">
+
+		<div class="modifTop">修改密码</div>
+		<div class="modifyPasswordContent">
+			<ul>
+				<li>请输入原密码：<input type="password" id="oldpwdtext"> <span
+					id="oldpwdtexttip">您本次登录的密码</span>
+				<li>请输入新密码：<input type="password" id="newpwd"><span
+					id="newpwdtip">新密码不少于6个字符</span>
+				<li>请确认原密码：<input type="password" id="newpwd2"><span
+					id="newpwd2tip">新密码不少于6个字符</span>
+				<li><input type="button" id="modifypwdbtna" value="确认修改密码">
+					<input id="modifypwdcancel" type="button" value="取消">
+			</ul>
+
+		</div>
+		<div></div>
+	</div>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.dialog.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
+</html>

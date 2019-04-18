@@ -1,0 +1,121 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+{% load staticfiles %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改课程</title>
+    <link href="{% static 'css/tail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script>
+        function change() {
+            var height01 = $(window).height();
+            $(".top").css('height', height01 - 35+"px");
+        }
+    </script>
+</head>
+
+<body style="border-radius: 8px" onload="change()">
+<!--<div class="title"><h2>通知详情</h2></div>-->
+<form id="form_demo" action="updatecurriculum" method="post">
+<div class="top">
+    <div>
+        <div class="top_out">
+            <table class="table" >
+                <tbody>
+                <input type="hidden" name="id" value="{{curlinfo.0}}">
+                <tr>
+                    <td>班级：</td>
+                    <td colspan = "2" style="text-align: left"><select name="classid">
+                        <option value="0">--可选择班级--</option>
+                            {% block classes %}
+                                {% for item in classList %}
+                                    <option value="{{item.0}}"{% if item.0 == curlinfo.7 %} selected="selected"{% endif %}>{{item.1}}</option>
+                                {% endfor %}
+                            {% endblock %}
+                        </select></td>
+                    <td>学年：</td>
+                    <td colspan = "2" style="text-align: left"><select name="year" required>
+                            <option value="1"{% if curlinfo.6 == 1 %} selected="selected"{% endif %}>第一学年</option>
+                            <option value="2"{% if curlinfo.6 == 2 %} selected="selected"{% endif %}>第二学年</option>
+                            <option value="3"{% if curlinfo.6 == 3 %} selected="selected"{% endif %}>第三学年</option>
+                            <option value="4"{% if curlinfo.6 == 4 %} selected="selected"{% endif %}>第四学年</option>
+                    </select></td>
+                    <td>学期：</td>
+                    <td colspan = "2" style="text-align: left"><select name="term">
+                            <option value="1"{% if curlinfo.5 == 1 %} selected="selected"{% endif %}>第一学期</option>
+                            <option value="2"{% if curlinfo.5 == 2 %} selected="selected"{% endif %}>第二学期</option>
+                    </select></td>
+                </tr>
+                <tr>
+
+                    <td>星期：</td>
+                    <td colspan = "3" style="text-align: left"><select name="week" required>
+                            <option>--请选择在周几上课--</option>
+                            <option value="1"{% if curlinfo.4 == 1 %} selected="selected"{% endif %}>星期一</option>
+                            <option value="2"{% if curlinfo.4 == 2 %} selected="selected"{% endif %}>星期二</option>
+                            <option value="3"{% if curlinfo.4 == 3 %} selected="selected"{% endif %}>星期三</option>
+                            <option value="4"{% if curlinfo.4 == 4 %} selected="selected"{% endif %}>星期四</option>
+                            <option value="5"{% if curlinfo.4 == 5 %} selected="selected"{% endif %}>星期五</option>
+                    </select></td>
+                    <td>节次：</td>
+                    <td colspan = "3" style="text-align: left"><select name="time">
+                    		<option>-请选择上课节次-</option>
+                            <option value="1"{% if curlinfo.3 == 1 %} selected="selected"{% endif %}>上午第一节</option>
+                            <option value="2"{% if curlinfo.3 == 2 %} selected="selected"{% endif %}>上午第二节</option>
+                            <option value="3"{% if curlinfo.3 == 3 %} selected="selected"{% endif %}>下午第一节</option>
+                            <option value="4"{% if curlinfo.3 == 4 %} selected="selected"{% endif %}>下午第二节</option>
+                            <option value="5"{% if curlinfo.3 == 5 %} selected="selected"{% endif %}>晚上</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>课程：</td>
+                    <td colspan = "3" style="text-align: left"><select name="subjectid">
+                        <option value="0">--可选择课程--</option>
+                            {% block subjects %}
+                                {% for subject in subjectList %}
+                                    <option value="{{subject.0}}"{% if subject.0 == curlinfo.1 %} selected="selected"{% endif %}>{{subject.1}}</option>
+                                {% endfor %}
+                            {% endblock %}
+                        </select></td>
+                    <td>学年：</td>
+                    <td colspan = "3" style="text-align: left"><select name="teacherid">
+                        <option value="0">--可选择教师--</option>
+                            {% block teachers %}
+                                {% for teacher in teacherList %}
+                                    <option value="{{teacher.0}}"{% if teacher.0 == curlinfo.2 %} selected="selected"{% endif %}>{{teacher.1}}</option>
+                                {% endfor %}
+                            {% endblock %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td >上课地点：</td>
+                    <td  colspan = "10"  style="text-align: left;border-top: none"><input type="text"  name ="site" minlength="2"  required autocomplete="off" value="{{curlinfo.8}}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bot_btn">
+        <input type="submit" class="btn" value="保存"/>
+        <button class="btn btn1"><a href="curriculum.html" target="right">返回</a></button>
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script >
+    $.validator.setDefaults({
+        submitHandler: function() {
+            alert("修改成功");
+        }
+    });
+    $().ready(function() {
+        $("#form_demo").validate();
+    });
+</script>
+<script src="{% static 'js/date/js/laydate.js' %}"></script>
+
+</html>

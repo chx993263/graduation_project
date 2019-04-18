@@ -1,0 +1,180 @@
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>工作详情</title>
+    <link href="{% static 'css/tail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script>
+        function change() {
+            var height01 = $(window).height();
+            $(".top").css('height', height01 - 35+"px");
+        }
+    </script>
+</head>
+
+<body style="border-radius: 8px" onload="change()">
+<!--<div class="title"><h2>通知详情</h2></div>-->
+<form id="form_demo" >
+<div class="top">
+    <div>
+        <div class="top_out">
+            <table class="table" >
+                <tbody>
+                <tr>
+                    <td style="border-top: none">日志标题：<i class="i_start"></i></td>
+                    <td  colspan = "6"  style="text-align: left;border-top: none"><input type="text" name ="name" minlength="2"  required></td>
+                </tr>
+                <tr>
+                    <td>编号：<i class="i_start"></i></td>
+                    <td  style="text-align: left"><input type="text" name ="name" minlength="2"  required></td>
+                    <td>发布人：</td>
+                    <td colspan = "3" style="text-align: left"><input type="text" class="long_text"></td>
+                </tr>
+                <tr>
+                    <td>执行时间：</td>
+                    <td  style="text-align: left"><input type="text"></td>
+                    <td>执行人：</td>
+                    <td colspan = "3" style="text-align: left"><input type="text" class="long_text"></td>
+                </tr>
+                <tr>
+                    <td style="line-height: 340px">发布内容：</td>
+                    <td colspan = "8" style="text-align: left"><textarea  id="editor" style="width: 100%;height: 240px"></textarea></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bot_btn">
+        <input type="submit" class="btn" value="保存">
+        <button class="btn btn1"><a href="notice.html" target="right">返回</a></button>
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/utf8-php/ueditor.config.js' %}"></script>
+<script src="{% static 'js/utf8-php/ueditor.all.min.js' %}"></script>
+
+<script >
+    var ue = UE.getEditor('editor');
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('????html????', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("");
+        arr.push("");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("");
+        arr.push("");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("");
+        UE.getEditor('editor').setContent('??????ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("");
+        arr.push("");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("");
+        arr.push("");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("")
+    }
+</script>
+<script >
+//$.validator.setDefaults({
+//submitHandler: function() {
+//alert("修改成功");
+//}
+//});
+$().ready(function() {
+$("#form_demo").validate();
+});
+</script>
+</html>

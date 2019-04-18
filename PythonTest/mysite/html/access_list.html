@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/info-mgt.css" />
+    <style>
+        .tree_left{box-sizing:border-box;overflow-y: auto;width:19%;border: 1px #c1d3de solid;margin-right: 1%;border-top:none;}
+        .tree_left h6,.tree_right h6{line-height: 30px;font-weight: bold;padding-left: 6px ;color: #000;font-size: 14px}
+        .tree_left_top{margin: 6px}
+        .tree_input input{border: 1px #ccc solid;margin:3px 0 0 10px;border-radius: 4px;
+        }
+        .layui-layer-title{background:url(images/righttitlebig.png) repeat-x;font-weight:bold;color:#46647e; border:1px solid #c1d3de;height: 33px;line-height: 33px;}
+        .tabe_bot label{width: 70px;text-align: right;font-size: 14px;font-weight: 900;color: #46647e}
+        .l_left{float: left}
+        .tabe_bot input,.tabe_bot  select{width: 180px;height: 30px;border-radius: 6px;margin:0 20px 0 0;border: none;border: 1px #ccc solid}
+        .tabe_btn{width: 60px;height: 30px;background-color: #68b86c;border: none;border-radius: 6px;color: #fff}
+
+        div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #99c9db;text-align: left;padding: 2px;z-index: 999}
+        div#rMenu ul li{ margin: 1px 0;padding: 5px 15px;cursor: pointer;list-style: none outside none;background-color: #5a8cc4;color: #fff  }
+        div#rMenu ul li:hover{color: #000;background-color: #ccc}
+        #rMenu ul{margin: 0;padding: 0}
+    </style>
+
+    <script src="js/jquery.js"></script>
+    <script>
+        function change() {
+            var height01 = $(window).height();
+            $(".tree_left").css('height', height01 - 35+"px");
+        }
+    </script>
+    <title>电子通行单一览</title>
+</head>
+
+<body onload="change()" onresize="change()">
+<div class="title"><h2>电子通行单一览</h2></div>
+
+<div class="l_left" style="width: 100%">
+    <div class="query">
+        <div class="tabe_bot">
+            <div class="l_left" style="margin-left: 20px"><label>生成时间：</label><input type="text" id="demo"></div>
+
+            <button class="tabe_btn ">查询</button>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="table-operate ue-clear">
+        <a href="javascript:;" class="print" onclick="openlayer()" style=" background:url(images/tjico_up.png) no-repeat left 9px;">打印</a>
+        <a href="javascript:;" class="edit" style=" background:url(images/tjico_down.png) no-repeat left 9px;">下载</a>
+        <a href="javascript:;" class="del">删除</a>
+
+
+    </div>
+    <div class="table-box">
+        <table id="table" class="table_style"></table>
+    </div>
+    <div class="pagination ue-clear"></div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/demo/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="js/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="js/jquery.ztree.exedit-3.5.js"></script>
+<script src="js/organize.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    $(function () {
+        $('#table').bootstrapTable({
+            method: "get",
+            striped: true,
+            singleSelect: false,
+            url: "json/datum.json",
+            dataType: "json",
+            pagination: true, //分页
+            pageSize: 10,
+            pageNumber: 1,
+            search: false, //显示搜索框
+            contentType: "application/x-www-form-urlencoded",
+            queryParams: null,
+            columns: [
+                {
+                    checkbox:"true",
+                    field: '编号',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: "进游览区时间",
+                    field: 'class',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '出浏览区时间',
+                    field: 'sex',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '车牌号',
+                    field: 'sex',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '接车单位',
+                    field: 'sex',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '刷卡',
+                    field: 'sex',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '指定停车场',
+                    field: 'sex',
+                    align: 'center',
+                    valign: 'middle'
+                },
+
+
+                {
+                    title: '操作',
+                    field: 'id',
+                    align: 'center',
+                    formatter: function (value, row) {
+                        var e = '<a  href="#" onclick="openlayer(\'' + row.id + '\')">查看详情</a> ';
+
+                        return e;
+                    }
+                }
+            ]
+        });
+    });
+</script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+<script type="text/javascript">
+    function openlayer(id){
+        layer.open({
+            type: 2,
+            title: '添加信息',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+//            maxmin: true,
+            closeBtn:2,
+            area: ['80%', '90%'],
+            shadeClose: true,
+            closeBtn: 2,
+            content: 'demo.html'
+            //iframe的url
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/info-mgt.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/jquery.treetable.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/jquery.treetable.theme.default.css' %}" />
+    <style>
+        .layui-layer-title{background:url({% static 'images/righttitlebig.png' %}) repeat-x;font-weight:bold;color:#46647e; border:1px solid #c1d3de;height: 33px;line-height: 33px;}
+        .tabe_bot label{width: 70px;text-align: right;font-size: 14px;font-weight: 900;color: #46647e}
+        .l_left{float: left}
+        .tabe_bot input,.tabe_bot  select{width: 180px;height: 30px;border-radius: 6px;margin:0 20px 0 0;border: none;border: 1px #ccc solid}
+        .tabe_btn{width: 60px;height: 30px;background-color: #68b86c;border: none;border-radius: 6px;color: #fff}
+    </style>
+    <title>班级管理</title>
+</head>
+
+<body>
+<form action="class.html" method="post">
+<div class="title"><h2>班级管理</h2></div>
+
+    <div class="query">
+
+            <div class="tabe_bot">
+                <div class="l_left"><label>班级名称：</label>
+                    <input type="text" placeholder="请输入班级名称" name="likeclass" value="{{likeclass}}"></div>
+
+
+            <button class="tabe_btn " type="submit" >查询</button>
+            <div class="clear"></div>
+            </div>
+
+    </div>
+<div class="table-operate ue-clear">
+    <a href="#" class="add" id="addpart" onClick="openlayer()">添加</a>
+    <a href="javascript:;" class="del">删除</a>
+    <a href="javascript:;" class="edit">编辑</a>
+
+</div>
+
+<div class="table-box">
+    <table id="example-advanced"  class="tableztree01">
+
+        <tr class="thead_tr"><td style="padding-left: 10px;font-weight: bold">班级</td><td style="font-weight: bold">描述</td><td style="font-weight: bold">操作</td></tr>
+        <tbody>
+            {% block article %}
+
+                {% for item in classList %}
+                    <tr data-tt-id="0" data-tt-parent-id="0">
+                            <td ><span class="file"></span>{{item.1}}</td>
+                            <td>{{item.2}}</td>
+                            <td > <a href="delclass?class_id={{item.0}}&class_name={{item.1 }}">删除</a> <a href="#" onClick="updatelayer('{{item.0}}')">修改</a></td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+
+        </tbody>
+    </table>
+</div>
+<div class="pagination ue-clear"></div>
+<div class="part_page">
+    <tr>
+				<td colspan="3">
+					<input type="hidden" name="pageNo" value="{{pageinfo.pageNo }}" />
+					<input type="hidden" name="totalPage" value="{{pageinfo.totalPage }}" />
+					<a href="javascript:void(0);" onclick="javascript:first(1)" >首页</a>
+					<a href="javascript:void(0);" onclick="javascript:prev({{pageinfo.pageNo }})" >上一页</a>
+					<a href="javascript:void(0);" onclick="javascript:next({{pageinfo.pageNo }})" >下一页</a>
+					<a href="javascript:void(0);" onclick="javascript:last({{pageinfo.totalPage }})" >尾页</a>
+					<a>第 {{pageinfo.pageNo }} 页/共 {{pageinfo.totalPage }} 页</a>
+
+				</td>
+
+    </tr>
+</div>
+</form>
+</body>
+<script type="text/javascript" src="{% static 'js/page.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.treetable.js' %}"></script>
+
+
+<script>
+    !function(){
+        laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+        laydate({elem: '#demo'});//绑定元素
+    }();
+</script>
+<script language="javascript">
+    $("#example-advanced").treetable({ expandable: true});
+
+
+
+</script>
+<script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
+<script type="text/javascript">
+
+    function openlayer(id){
+        layer.open({
+            type: 2,
+            title: '添加信息',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+//            maxmin: true,
+            closeBtn:1,
+            area: ['60%', '60%'],
+            shadeClose: true,
+            closeBtn: 1,
+            content: 'class_tail.html',
+            //iframe的url
+            end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+                location.reload();　　//layer.open关闭刷新
+            }
+        });
+    }
+    function updatelayer(id){
+        layer.open({
+            type: 2,
+            title: '修改信息',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+//            maxmin: true,
+            closeBtn:1,
+            area: ['60%', '60%'],
+            shadeClose: true,
+            closeBtn: 1,
+            content: 'updateclass?id='+id,
+            //iframe的url
+            end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+                location.reload();　　//layer.open关闭刷新
+            }
+        });
+    }
+</script>
+</html>

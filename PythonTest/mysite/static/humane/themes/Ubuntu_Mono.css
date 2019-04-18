@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/humane/eot_woff/Ubuntu_Mono.eot');
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url('/humane/eot_woff/Ubuntu_Mono.eot') format('embedded-opentype'), url('/humane/eot_woff/Ubuntu_Mono.woff') format('woff');
+}

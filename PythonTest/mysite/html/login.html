@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+		<script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action='/index/' method='POST' >
+			<div class="login">
+				<div class="content clearfix">
+					<div class="content-left">
+						<div class="logo">
+							<img src="../static/images/logo.jpg" alt=""/>
+							<p>南京工程学院考勤管理系统</p>
+						</div>
+					</div>
+					<div class="shu"></div>
+					<div class="content-right">
+						<div class="login-form">
+							<h2>用户登录/LOGIN</h2>
+							<div class="account clearfix">
+								<span>账　号：</span>
+								<input type="text" name="username" id="username"  value="" />
+								<span id="usermsg" style="color: red;"></span>
+							</div>
+							<div class="password clearfix">
+								<span>密　码：</span>
+								<input type="text" name="password" id="password" value="" />
+								<span id="pwdmsg" style="color: red;"></span>
+							</div>
+							<div class="btn">
+								<span id="login"><input type="submit" value="登录"></input></span>
+								<!--<span class="forget"><a href="/success">忘记密码</a></span>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript">
+
+		</script>
+		<!--<script type="text/javascript">
+			$(document).ready(function(){
+				if (window.PIE) {
+			        $('.rounded').each(function() {
+			            PIE.attach(this);
+			        });
+			    }
+			});
+		</script>-->
+	</body>
+</html>

@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Cabin Sketch';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/humane/eot_woff/Cabin+Sketch700_v2.eot');
+  src: local('CabinSketch Bold'), local('CabinSketch-Bold'), url('/humane/eot_woff/Cabin+Sketch700_v2.eot') format('embedded-opentype'), url('/humane/eot_woff/Cabin+Sketch700_v2.woff') format('woff');
+}

@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>用户详情</title>
+    <link href="{% static 'css/tail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script>
+        function change() {
+            var height01 = $(window).height();
+            $(".top").css('height', height01 - 35+"px");
+        }
+    </script>
+</head>
+
+<body style="border-radius: 8px" onload="change()">
+<!--<div class="title"><h2>通知详情</h2></div>-->
+<form id="form_demo" >
+<div class="top">
+    <div>
+        <div class="top_out">
+            <table class="table" >
+                <tbody>
+                <tr>
+                    <td>教师姓名：<i class="i_start"></i></td>
+                    <td colspan = "2" style="text-align: left"><input type="text" class="long_text" id="teacher_name" value="{{info.3}}"></td>
+                    <td>工号：<i class="i_start"></i></td>
+                    <td colspan = "3" style="text-align: left"><input type="text" class="long_text" id="teacher_no" value="{{info.1}}"></td>
+                </tr>
+                <tr>
+                    <td>联系方式：</td>
+                    <td colspan = "5" style="text-align: left"><input type="text" class="long_text" id="tel" value="{{info.4}}"></td>
+                </tr>
+                <tr>
+                    <td style="line-height: 240px">备注：</td>
+                    <td colspan = "8" style="text-align: left"><textarea  id="notes" style="width: 100%;height: 240px">{{info.5}}</textarea></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bot_btn">
+        <button class="btn btn1"><a href="teacher.html" target="right">返回</a></button>
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script >
+    $.validator.setDefaults({
+        submitHandler: function() {
+            alert("修改成功");
+        }
+    });
+    $().ready(function() {
+        $("#form_demo").validate();
+    });
+</script>
+<script src="{% static 'js/date/js/laydate.js' %}"></script>
+
+</html>

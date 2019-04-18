@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/humane/eot_woff/Ubuntu_v2.eot');
+  src: local('Ubuntu'), url('/humane/eot_woff/Ubuntu_v2.eot') format('embedded-opentype'), url('/humane/eot_woff/Ubuntu_v2.woff') format('woff');
+}
