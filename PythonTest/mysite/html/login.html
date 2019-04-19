@@ -47,6 +47,8 @@
 			var msg = {{ msg|safe }};
 			if(msg == 'fail'){
 				humane("账号或密码错误！请重新登录");
+			}else if(msg == 'logout'){
+				humane("身份可能已过期，请重新登录");
 			}
 		</script>
 	</body>

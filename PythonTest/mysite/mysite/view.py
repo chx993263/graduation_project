@@ -577,6 +577,167 @@ def delact(request):
         conn.rollback()
     return notice(request)
 
+# 显示学生违纪图片
+def showimg(request):
+    if (request.session.get('log_id')):
+        logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
+            request.session['log_id'])
+        try:
+            # 执行sql语句
+            cur.execute(logout)
+            # 提交到数据库执行
+            conn.commit()
+        except:
+            # 如果发生错误则回滚
+            conn.rollback()
+    return render(request, "showimg.html")
+
+# 学生统计
+def studentstatistics(request):
+    classSql= "select id,class_name from class"
+    cur.execute(classSql)
+    classList = cur.fetchall()
+    pageNo = 1
+    rank = 0
+    ranktype = 0
+    classid = 0
+    likestudent = ''
+    if request.method == 'POST':
+        pageNo = request.POST['pageNo']
+        rank = int(request.POST['rank'])
+        ranktype = int(request.POST['ranktype'])
+        classid = int(request.POST['classid'])
+        likestudent = request.POST['likestudent']
+    setclass = ''
+    if (classid != 0):
+        setclass = 'and class_id = '+str(classid)
+    getCount = "select count(1) from student where (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\')"+setclass
+    # 获取总的个数
+    cur.execute(getCount)
+    pageCount = cur.fetchone()[0]
+    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
+    info2 = " order by id "
+    info3 = ""
+    if (ranktype == 1):
+        info2 = " order by percount "
+    if (rank == 1):
+        info3 = " desc "
+    info4 = "  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+    studentstr = "{} {} {} {}"
+    studentSql = studentstr.format(info1, info2, info3, info4)
+    cur.execute(studentSql)
+    studentList = cur.fetchall()
+    pageinfo = {
+        "pageNo": pageNo,
+        "totalPage": pagebean.getTotalPage()
+    }
+    if (request.session.get('log_id')):
+        logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
+            request.session['log_id'])
+        try:
+            # 执行sql语句
+            cur.execute(logout)
+            # 提交到数据库执行
+            conn.commit()
+        except:
+            # 如果发生错误则回滚
+            conn.rollback()
+    return render(request, "studentstatistics.html",{"classList":classList,"pageinfo":pageinfo,"rank":rank,"ranktype":ranktype,"likestudent":likestudent,"classid":classid,"studentList":studentList})
+
+
+
+# 班级统计
+def classstatistics(request):
+    pageNo = 1
+    rank = 0
+    ranktype = 0
+    if request.method == 'POST':
+        pageNo = request.POST['pageNo']
+        rank = int(request.POST['rank'])
+        ranktype = int(request.POST['ranktype'])
+    getCount = "select count(1) from class"
+    # 获取总的个数
+    cur.execute(getCount)
+    pageCount = cur.fetchone()[0]
+    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    info1 = "select class.id,class_name,(select count(1) from student where class_id = class.id) as personcount,(select count(1) from performance where class_id = class.id) as percount from class,student,performance group by class_name "
+    info2 = " order by id "
+    info3 = ""
+    if(ranktype == 1):
+        info2 = " order by percount "
+    if(rank == 1):
+        info3 = " desc "
+    info4 = "  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+    classstr = "{} {} {} {}"
+    classSql = classstr.format(info1,info2,info3,info4)
+    cur.execute(classSql)
+    classList = cur.fetchall()
+    pageinfo = {
+        "pageNo": pageNo,
+        "totalPage": pagebean.getTotalPage()
+    }
+    if (request.session.get('log_id')):
+        logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
+            request.session['log_id'])
+        try:
+            # 执行sql语句
+            cur.execute(logout)
+            # 提交到数据库执行
+            conn.commit()
+        except:
+            # 如果发生错误则回滚
+            conn.rollback()
+    return render(request, "classstatistics.html",{"classList":classList,"pageinfo":pageinfo,"rank":rank,"ranktype":ranktype})
+# 跳转
+# 班级统计
+def showclass(request):
+    classSql= "select id,class_name from class"
+    cur.execute(classSql)
+    classList = cur.fetchall()
+    pageNo = 1
+    rank = 0
+    ranktype = 0
+    classid = int(request.GET['class_id'])
+    likestudent = ''
+    setclass = ''
+    if (classid != 0):
+        setclass = 'and class_id = '+str(classid)
+    getCount = "select count(1) from student where (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\')"+setclass
+    # 获取总的个数
+    cur.execute(getCount)
+    pageCount = cur.fetchone()[0]
+    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
+    info2 = " order by id "
+    info3 = ""
+    if (ranktype == 1):
+        info2 = " order by percount "
+    if (rank == 1):
+        info3 = " desc "
+    info4 = "  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+    studentstr = "{} {} {} {}"
+    studentSql = studentstr.format(info1, info2, info3, info4)
+    cur.execute(studentSql)
+    studentList = cur.fetchall()
+    pageinfo = {
+        "pageNo": pageNo,
+        "totalPage": pagebean.getTotalPage()
+    }
+    if (request.session.get('log_id')):
+        logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
+            request.session['log_id'])
+        try:
+            # 执行sql语句
+            cur.execute(logout)
+            # 提交到数据库执行
+            conn.commit()
+        except:
+            # 如果发生错误则回滚
+            conn.rollback()
+    return render(request, "studentstatistics.html",{"classList":classList,"pageinfo":pageinfo,"rank":rank,"ranktype":ranktype,"likestudent":likestudent,"classid":classid,"studentList":studentList})
+
+
 
 # 学生
 def student(request):
@@ -1046,9 +1207,9 @@ def updateclass(request):
     cur.execute(select)
     info = cur.fetchone()
     if (request.session.get('log_id')):
-        logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
-            request.session['log_id'])
         try:
+            logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
+                request.session['log_id'])
             # 执行sql语句
             cur.execute(logout)
             # 提交到数据库执行
@@ -1063,8 +1224,8 @@ def classtoupdate(request):
     classname = request.POST["classname"]
     notes = request.POST["notes"]
     upadtecl = "update class set class_name = \'"+classname+"\',class_note = \'"+notes+"\' where id ="+class_id
-    log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" update the classname: "+classname+"\',\'"+getTime.now()+"\',2)"
     try:
+        log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" update the classname: "+classname+"\',\'"+getTime.now()+"\',2)"
         # 执行sql语句
         cur.execute(upadtecl)
         # 添加到操作日志
@@ -1074,6 +1235,7 @@ def classtoupdate(request):
     except:
         # 如果发生错误则回滚
         conn.rollback()
+        return render(request, "fail.html", {"msg": 'logout'})
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
             request.session['log_id'])

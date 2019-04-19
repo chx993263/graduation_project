@@ -38,13 +38,20 @@ urlpatterns = [
 
     path("index/mailList.html", view.mailList),
 
+    # 统计及排名
+    path("index/studentstatistics.html", view.studentstatistics),
+    path("index/classstatistics.html", view.classstatistics),
+    # 班级统计跳转查看指定班级
+    path("index/showclass", view.showclass),
+
+
     # 通告
     path("index/notice.html", view.notice),
     # 批量删除通告
     path("index/delacts", view.delacts),
     # 单个删除
     path("index/delact", view.delact),
-
+    path("index/showimg.html", view.showimg),
 
 
     # student 请求地址

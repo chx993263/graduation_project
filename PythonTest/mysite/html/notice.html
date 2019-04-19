@@ -14,7 +14,6 @@
         .tree_left_top{margin: 6px}
         .tree_input input{border: 1px #ccc solid;margin:3px 0 0 10px;border-radius: 4px;
         }
-        .layui-layer-title{background:url(images/righttitlebig.png) repeat-x;font-weight:bold;color:#46647e; border:1px solid #c1d3de;height: 33px;line-height: 33px;}
         .tabe_bot label{width: 70px;text-align: right;font-size: 14px;font-weight: 900;color: #46647e}
         .l_left{float: left}
         .tabe_bot input,.tabe_bot  select{width: 180px;height: 30px;border-radius: 6px;margin:0 20px 0 0;border: none;border: 1px #ccc solid}
@@ -101,8 +100,8 @@
                             <td>{{item.3}}</td>
                             <td>{{item.4}}</td>
                             <td>{{item.5}}</td>
-                            <td><a href="#">查看图片</a> </td>
-                            <td ><a href="#" onClick="showlayer('{{item.0}}')">查看</a><a href="delact?actid={{item.0}}&studentname={{item.1}}" onclick="if(confirm('确认删除吗？')==false)return false;">消除记录</a></td>
+                            <td><a href="#" onclick="showimg('{{item.0}}')">查看图片</a> </td>
+                            <td ><a href="delact?actid={{item.0}}&studentname={{item.1}}" onclick="if(confirm('确定消除该同学的记录吗？')==false)return false;">消除记录</a></td>
                     </tr>
                 {% endfor %}
             {% endblock %}
@@ -150,6 +149,25 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
+    function showimg(id){
+        layer.open({
+            type: 2,
+            title: '抓拍现场',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+//            maxmin: true,
+            closeBtn:1,
+            area: ['60%', '60%'],
+            shadeClose: true,
+            closeBtn: 1,
+            content: 'showimg.html',
+            //iframe的url
+            end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+                location.reload();　　//layer.open关闭刷新
+            }
+        });
+    }
     function delNotice() {
         var checkedNum = $("input[name='ids']:checked").length;
         if (checkedNum == 0) {
@@ -176,26 +194,6 @@
             });
         }
 
-    }
-
-    function showlayer(id){
-        layer.open({
-            type: 2,
-            title: '查看信息',
-            shadeClose: true,
-            shade: 0.5,
-            skin: 'layui-layer-rim',
-    //            maxmin: true,
-            closeBtn:2,
-            area: ['80%', '90%'],
-            shadeClose: true,
-            closeBtn: 2,
-            content: 'student_tail?id='+id,
-            //iframe的url
-            end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
-                location.reload();　　//layer.open关闭刷新
-            }
-        });
     }
 </script>
 </html>
