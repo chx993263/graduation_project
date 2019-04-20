@@ -10,11 +10,12 @@ from django.core.paginator import Paginator
 #获取本机电脑名
 myname = socket.getfqdn(socket.gethostname(  ))
 #获取本机ip
-addr = socket.gethostbyname(myname)
-# addr = '198.168.1.1'
+# addr = socket.gethostbyname(myname)
+addr = '198.168.1.1'
 
-conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
-
+# conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
+conn = pymysql.connect(host='10.20.8.175', user='root', passwd='njit', db='attendancesystem', port=3306, charset='utf8')
+print(conn)
 # 打印数据库连接对象
 # print('数据库连接对象为：{}'.format(conn))
 # 获取游标
@@ -28,9 +29,7 @@ def login(request):
 # 修改密码
 def modifypwd(request):
     oldpwd = request.POST['oldpwd']
-    print(oldpwd)
     newpwd = request.POST['newpwd']
-    print(newpwd)
     isexist = "select count(1) from acct where adminName = \'" + request.session['adminName'] + "\' and password = \'" +getMD5.md5(oldpwd) + "\'"
     cur.execute(isexist)
     if cur.fetchone()[0]:
@@ -183,12 +182,11 @@ def schedule(request):
     pageNo = 1
     if request.method == 'POST':
         pageNo = request.POST['pageNo']
-
     getCount = "select count(1) from class"
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     classSql = "select class.id,class_name,(select count(1) from student where class_id = class.id) as count from class left join student on class_id = class.id group by class_name limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
     cur.execute(classSql)
     classList = cur.fetchall()
@@ -241,7 +239,7 @@ def curriculum(request):
     getCount = countstr.format(info1,info2,info3)
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     info1 = "select curriculum.id,week,time,class_name,subject_name,teacher_name,site from curriculum,class,subject,teacher where class.id = class_id and teacher_id = teacher.id and subject.id = subject_id and year = "+str(year)+" and term = "+str(term)
     info2 = ''
     info3 = ''
@@ -327,7 +325,6 @@ def updatecurriculum(request):
             return render(request, "fail.html")
         # 验证完成，进行添加操作
         addsql = "insert into curriculum(subject_id,teacher_id,time,week,term,year,class_id,site) values("+subjectid+","+teacherid+","+time+","+week+","+term+","+year+","+classid+",\'"+site+"\')"
-        print(addsql)
         try:
             # 执行sql语句
             cur.execute(addsql)
@@ -519,7 +516,7 @@ def notice(request):
     getCount = str1.format(info1,info2,info3,info4,info5,info6,info7)
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     info7 = "limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
     str2 = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time {} {} {} {} {} {} {}"
     testSql = str2.format(info1,info2,info3,info4,info5,info6,info7)
@@ -615,7 +612,7 @@ def studentstatistics(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
     info2 = " order by id "
     info3 = ""
@@ -660,7 +657,7 @@ def classstatistics(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     info1 = "select class.id,class_name,(select count(1) from student where class_id = class.id) as personcount,(select count(1) from performance where class_id = class.id) as percount from class,student,performance group by class_name "
     info2 = " order by id "
     info3 = ""
@@ -707,7 +704,7 @@ def showclass(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
     info2 = " order by id "
     info3 = ""
@@ -759,7 +756,7 @@ def student(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo), 3, pageCount)
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     testSql = ''
     if(classid):
         testSql = "select student.id,student_name,student_no,tel,sex,class_name from student,class where (student.student_name like \'%" + likestudent + "%\' or student.student_no like \'%" + likestudent + "%\') and student.class_id = class.id and class_id = "+str(classid)+" limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
@@ -959,7 +956,7 @@ def teacher(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo),3,pageCount)
+    pagebean = pageBean.PageTest(int(pageNo),10,pageCount)
     testSql = "select id,teacher_name,teacher_no,tel from teacher where teacher_name like \'%"+liketeacher+"%\' or teacher_no like \'%"+liketeacher+"%\' limit "+str(pagebean.getStartNum())+","+str(pagebean.getPageSize())
     cur.execute(testSql)
     teacherList = cur.fetchall()
@@ -1135,7 +1132,7 @@ def classes(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo),3,pageCount)
+    pagebean = pageBean.PageTest(int(pageNo),10,pageCount)
     testSql = "select * from class where class_name like \'%"+likeclass+"%\' limit "+str(pagebean.getStartNum())+","+str(pagebean.getPageSize())
     cur.execute(testSql)
     classList = cur.fetchall()
@@ -1252,11 +1249,17 @@ def classtoupdate(request):
 def delclass(request):
     class_id = request.GET["class_id"]
     delcl = "delete from class where id = "+class_id
+    # 出了删除班级 还需要 删除学生， 删除 这个班的课程
+    delstu = "delete from student where class_id = "+class_id
+    delsub = "delete from curriculum where class_id = "+class_id
     classname = request.GET["class_name"]
-    log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the classname: "+classname+"\',\'"+getTime.now()+"\',3)"
+    log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the classname: "+classname+" and more\',\'"+getTime.now()+"\',3)"
+
     try:
         # 执行sql语句
         cur.execute(delcl)
+        cur.execute(delstu)
+        cur.execute(delsub)
         # 添加到操作日志
         cur.execute(log)
         # 提交到数据库执行
@@ -1288,7 +1291,7 @@ def subject(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo),3,pageCount)
+    pagebean = pageBean.PageTest(int(pageNo),10,pageCount)
     testSql = "select * from subject where subject_name like \'%"+likesubject+"%\' limit "+str(pagebean.getStartNum())+","+str(pagebean.getPageSize())
     cur.execute(testSql)
     subjectList = cur.fetchall()
@@ -1445,7 +1448,7 @@ def behavior(request):
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
-    pagebean = pageBean.PageTest(int(pageNo),3,pageCount)
+    pagebean = pageBean.PageTest(int(pageNo),10,pageCount)
     testSql = "select * from behavior where behavior_name like \'%"+likebehavior+"%\' limit "+str(pagebean.getStartNum())+","+str(pagebean.getPageSize())
     cur.execute(testSql)
     behaviorList = cur.fetchall()
