@@ -82,12 +82,12 @@
  <div class="table-box">
     <table id="example-advanced"  class="tableztree01">
 
-        <tr class="thead_tr"><td style="font-weight: bold">排名</td><td style="font-weight: bold">班级(点击班级可跳转）</td><td style="font-weight: bold">总人数</td><td style="font-weight: bold">违纪人次</td><td style="font-weight: bold">缺勤人次</td><td style="font-weight: bold">平均分数</td></tr>
+        <tr class="thead_tr"><td style="font-weight: bold;padding-left: 10px;">排名</td><td style="font-weight: bold">班级(点击班级可跳转）</td><td style="font-weight: bold">总人数</td><td style="font-weight: bold">违纪人次</td><td style="font-weight: bold">缺勤人次</td><td style="font-weight: bold">平均分数</td></tr>
         <tbody>
             {% block article %}
                 {% for item in classList %}
                     <tr data-tt-id="0" data-tt-parent-id="0">
-                            <td style="padding-left: 10px;">{{item.0}}</td>
+                            <td style="padding-left: 10px;">{{forloop.counter}}</td>
                         <td><a href="showclass?class_id={{item.0}}">{{item.1}}</a></td>
                             <td>{{item.2}}</td>
                             <td>{{item.3}}</td>

@@ -10,11 +10,11 @@ from django.core.paginator import Paginator
 #获取本机电脑名
 myname = socket.getfqdn(socket.gethostname(  ))
 #获取本机ip
-# addr = socket.gethostbyname(myname)
-addr = '198.168.1.1'
+addr = socket.gethostbyname(myname)
+# addr = '10.20.8.175'
 
-# conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
-conn = pymysql.connect(host='10.20.8.175', user='root', passwd='njit', db='attendancesystem', port=3306, charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
+# conn = pymysql.connect(host='10.20.8.175', user='root', passwd='njit', db='attendancesystem', port=3306, charset='utf8')
 print(conn)
 # 打印数据库连接对象
 # print('数据库连接对象为：{}'.format(conn))
@@ -506,11 +506,11 @@ def notice(request):
     if (actid !=0):
         info2 = "and behavior.id = "+str(actid)
     if (date != ''):
-        info3 = "and date like \'"+date+"\'"
+        info3 = "and time like \'%"+date+"%\'"
     if (classid != 0):
         info4 = "and class_id = "+str(classid)
     if (likestudent != ''):
-        info5 = "and student_name like \'"+likestudent+"\'"
+        info5 = "and student_name like \'%"+likestudent+"%\'"
     # 获取总的个数
     str1 = "select count(1) {} {} {} {} {} {} {}"
     getCount = str1.format(info1,info2,info3,info4,info5,info6,info7)
@@ -613,7 +613,7 @@ def studentstatistics(request):
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
-    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
+    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id ) as percount from student,performance,class where  class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student.id "
     info2 = " order by id "
     info3 = ""
     if (ranktype == 1):
@@ -658,7 +658,7 @@ def classstatistics(request):
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
-    info1 = "select class.id,class_name,(select count(1) from student where class_id = class.id) as personcount,(select count(1) from performance where class_id = class.id) as percount from class,student,performance group by class_name "
+    info1 = "select class.id,class_name,(select count(1) from student where class_id = class.id ) as personcount,(select count(1) from performance where classid = class.id) as percount from class,student,performance  where student_id = student.id group by class.id "
     info2 = " order by id "
     info3 = ""
     if(ranktype == 1):

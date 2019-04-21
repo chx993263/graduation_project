@@ -91,13 +91,13 @@
  <div class="table-box">
     <table id="example-advanced"  class="tableztree01">
 
-        <tr class="thead_tr"><td style="font-weight: bold">排名</td><td style="font-weight: bold">学生</td><td style="font-weight: bold">班级</td><td style="font-weight: bold">违纪次数</td><td style="font-weight: bold">缺勤次数</td><td style="font-weight: bold">分数</td></tr>
+        <tr class="thead_tr"><td style="font-weight: bold;padding-left: 10px;">排名</td><td style="font-weight: bold">学生</td><td style="font-weight: bold">班级</td><td style="font-weight: bold">违纪次数</td><td style="font-weight: bold">缺勤次数</td><td style="font-weight: bold">分数</td></tr>
         <tbody>
             {% block article %}
 
                 {% for item in studentList %}
                     <tr data-tt-id="0" data-tt-parent-id="0">
-                            <td style="padding-left: 10px;">{{item.0}}</td>
+                            <td style="padding-left: 10px;">{{forloop.counter}}</td>
                             <td>{{item.1}}</td>
                             <td>{{item.2}}</td>
                             <td>{{item.3}}</td>
