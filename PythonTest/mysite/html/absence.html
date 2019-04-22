@@ -5,61 +5,175 @@
     <meta charset="utf-8">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/bootstrap-table.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/zTreeStyle/zTreeStyle.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/info-mgt.css' %}" />
     <style>
-        .layui-layer-title{background:url(images/righttitlebig.png) repeat-x;font-weight:bold;color:#46647e; border:1px solid #c1d3de;height: 33px;line-height: 33px;}
+        .tree_left{box-sizing:border-box;overflow-y: auto;width:19%;border: 1px #c1d3de solid;margin-right: 1%;border-top:none;}
+        .tree_left h6,.tree_right h6{line-height: 30px;font-weight: bold;padding-left: 6px ;color: #000;font-size: 14px}
+        .tree_left_top{margin: 6px}
+        .tree_input input{border: 1px #ccc solid;margin:3px 0 0 10px;border-radius: 4px;
+        }
         .tabe_bot label{width: 70px;text-align: right;font-size: 14px;font-weight: 900;color: #46647e}
         .l_left{float: left}
-        .tabe_bot input,.tabe_bot  select{width: 180px;height: 30px;border-radius: 6px;margin:0 20px 0 0;text-indent:1em;border: none;border: 1px #ccc solid}
+        .tabe_bot input,.tabe_bot  select{width: 180px;height: 30px;border-radius: 6px;margin:0 20px 0 0;border: none;border: 1px #ccc solid}
         .tabe_btn{width: 60px;height: 30px;background-color: #68b86c;border: none;border-radius: 6px;color: #fff}
+
+        div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #99c9db;text-align: left;padding: 2px;z-index: 999}
+        div#rMenu ul li{ margin: 1px 0;padding: 5px 15px;cursor: pointer;list-style: none outside none;background-color: #5a8cc4;color: #fff  }
+        div#rMenu ul li:hover{color: #000;background-color: #ccc}
+        #rMenu ul{margin: 0;padding: 0};
+        .ztree_add_div {
+            width:200px;
+            height:100px;
+            border:1px solid #cccccc;
+            padding-top:10px;
+            padding-bottom:10px;
+            display:none;
+
+
+
+        }
+        .ztree_add_div p {
+
+            padding-bottom:10px;
+            padding-top:10px;
+        }
+        .bot_btn .btn{width: 40px;height: 24px;background-color: #68b86c;border: none;border-radius: 6px;color: #fff;margin-right: 15px;}
+        .bot_btn .btn1{background-color: #c1d3de;border: none;border-radius: 6px;color: #000;margin-right: 0}
+        .bot_btn{width: 100%;height: 30px;font-size:13px;text-align:center;}
     </style>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script>
+        function change() {
+            var height01 = $(window).height();
+            $(".tree_left").css('height', height01 - 35+"px");
+        }
+    </script>
     <title>缺勤管理</title>
 </head>
-
-<body onload="Noticeload()">
+<body>
+<form action="absence.html" method="post">
 <div class="title"><h2>缺勤管理</h2></div>
 <div class="query">
     <div class="tabe_bot">
         <div class="l_left">
-        	<div class="l_left"><label>选择班级：</label><select id="role">
-            <option>xxxxx</option>
-            <option>通信151</option>
-            <option>通信152</option>
-            <option>通信153</option>
-            <option>通信154</option>
+        	<div class="l_left"><label>选择行为：</label><select name="actid">
+            <option value="0">--可选择行为--</option>
+            {% block actlist %}
+                {% for act in actList %}
+                    <option value="{{act.0}}"{% if act.0 == actid %} selected="selected"{% endif %}>{{act.1}}</option>
+                {% endfor %}
+            {% endblock %}
         </select></div>
         </div>
-        <div class="l_left"><label>缺勤人：</label><input type="text" placeholder="请输入发布人" id="noticePuer"></div>
-        <div class="l_left"><label>缺勤时间：</label><input id="demo" placeholder="输入年月" id="demo" /></div>
-        <button class="tabe_btn " onclick="getNoticeTableData()">查询</button>
+        <div class="l_left"><label>受惩人：</label><input type="text" placeholder="请输入学生姓名" autocomplete="off" name="likestudent" value="{{likestudent}}"></div>
+        <div class="l_left"><label>行为时间：</label><input id="demo" placeholder="输入年月" autocomplete="off" name="date" value="{{date}}"/></div>
+        <div class="l_left"><label>所在班级：</label><select name="classid">
+            <option value="0">--可选择班级--</option>
+            {% block classes %}
+                {% for class in classList %}
+                    <option value="{{class.0}}"{% if class.0 == classid %} selected="selected"{% endif %}>{{class.1}}</option>
+                {% endfor %}
+            {% endblock %}
+        </select></div>
+        <button class="tabe_btn ">查询</button>
         <div class="clear"></div>
     </div>
 </div>
 <div class="table-operate ue-clear">
-    <a href="{% static 'javascript:;" class="del" onclick="delNotice(id)">删除</a>
-    <!--<a href="{% static 'javascript:;" class="edit">编辑</a>-->
-    <!--<a href="{% static 'javascript:;" class="count">统计</a>-->
-    <!--<a href="{% static 'javascript:;" class="check">审核</a>-->
+    <a href="javascript:;" class="del" onclick="delNotice(id)">删除</a>
+</div>
+ <div class="table-box">
+    <table id="example-advanced"  class="tableztree01">
+
+        <tr class="thead_tr"><td style="padding-left: 10px;font-weight: bold">批量选择</td><td style="font-weight: bold">学生</td><td style="font-weight: bold">所在班级</td><td style="font-weight: bold">课程</td><td style="font-weight: bold">行为</td><td style="font-weight: bold">时间</td><td style="font-weight: bold">操作</td></tr>
+        <tbody>
+            {% block article %}
+
+                {% for item in noticeList %}
+                    <tr data-tt-id="0" data-tt-parent-id="0">
+                            <td style="padding-left: 10px;"><span class="file"><input type="checkbox" name="ids" value="{{item.0}}" ></span></td>
+                            <td>{{item.1}}</td>
+                            <td>{{item.2}}</td>
+                            <td>{{item.3}}</td>
+                            <td>{{item.4}}</td>
+                            <td>{{item.5}}</td>
+                            <td ><a href="delact?actid={{item.0}}&studentname={{item.1}}" onclick="if(confirm('确定消除该同学的记录吗？')==false)return false;">消除记录</a></td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+
+        </tbody>
+    </table>
 </div>
 <div class="table-box">
     <table id="table" class="table_style"></table>
 </div>
 <div class="pagination ue-clear"></div>
+<div class="part_page">
+    <tr>
+				<td colspan="3">
+					<input type="hidden" name="pageNo" value="{{pageinfo.pageNo }}" />
+					<input type="hidden" name="totalPage" value="{{pageinfo.totalPage }}" />
+					<a href="javascript:void(0);" onclick="javascript:first(1)" >首页</a>
+					<a href="javascript:void(0);" onclick="javascript:prev({{pageinfo.pageNo }})" >上一页</a>
+					<a href="javascript:void(0);" onclick="javascript:next({{pageinfo.pageNo }})" >下一页</a>
+					<a href="javascript:void(0);" onclick="javascript:last({{pageinfo.totalPage }})" >尾页</a>
+					<a>第 {{pageinfo.pageNo }} 页/共 {{pageinfo.totalPage }} 页</a>
+
+				</td>
+
+    </tr>
+
+</div>
+</div>
+</form>
 </body>
+<script type="text/javascript" src="{% static 'js/page.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/bootstrap-table.js' %}"></script>
 <script src="{% static 'js/bootstrap-table-zh-CN.min.js' %}"></script>
 <script src="{% static 'js/date/js/laydate.js' %}"></script>
-<script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
-<script src="{% static 'js/absence.js' %}"></script>
+<script src="{% static 'js/work.js' %}"></script>
 
-<script>
+<script type="text/javascript">
     !function(){
-        laydate.skin('danlan');//切换皮肤，请查看skins下面皮肤库
+        laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
         laydate({elem: '#demo'});//绑定元素
     }();
+</script>
+<script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
+<script type="text/javascript">
+    function delNotice() {
+        var checkedNum = $("input[name='ids']:checked").length;
+        if (checkedNum == 0) {
+            alert("请至少选择一项!");
+            return false;
+        }
+        if (confirm("确定删除所选项目?")) {
+            var checkedList = new Array();
+            $("input[name='ids']:checked").each(function () {
+                checkedList.push($(this).val());
+            });
+            $.ajax({
+                type: "POST",
+                url: "delacts",
+                data: {"delitems": checkedList.toString()},
+                datatype: "html",
+                success: function () {
+                    alert("删除成功！！！")
+                    location.reload();//页面刷新
+                },
+                error: function () {
+                    alert("删除失败，请重试！")
+                }
+            });
+        }
+
+    }
 </script>
 </html>

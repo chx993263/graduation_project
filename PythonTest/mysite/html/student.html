@@ -75,7 +75,7 @@
 </div>
 <div class="table-operate ue-clear">
     <a href="javascript:;" class="add" onclick="openlayer()">添加</a>
-    <a href="javascript:;" class="del" onclick="">删除</a>
+    <a href="javascript:;" class="add" onclick="addstudents()" >批量添加</a>
 
 </div>
 <div class="table-box">
@@ -151,6 +151,25 @@
             shadeClose: true,
             closeBtn: 2,
             content: 'student_add.html',
+            //iframe的url
+            end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+                location.reload();　　//layer.open关闭刷新
+            }
+        });
+    }
+    function addstudents(id){
+        layer.open({
+            type: 2,
+            title: '请按照要求添加',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+    //            maxmin: true,
+            closeBtn:2,
+            area: ['80%', '90%'],
+            shadeClose: true,
+            closeBtn: 2,
+            content: 'addstudents.html',
             //iframe的url
             end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
                 location.reload();　　//layer.open关闭刷新

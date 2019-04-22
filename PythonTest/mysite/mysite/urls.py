@@ -59,6 +59,9 @@ urlpatterns = [
     path("index/student_tail", view.student_tail),
     path("index/student_add.html", view.student_add),
     path("index/addstudent", view.addstudent),
+    # Excel 批量添加 学生 uploadfile
+    path("index/addstudents.html", view.addstudents),
+    path("index/uploadfile", view.uploadfile),
     path("index/delstudent", view.delstudent),
     path("index/updatestudent", view.updatestudent),
     path("index/studenttoupdate", view.studenttoupdate),

@@ -57,13 +57,13 @@ for i in range(1,sheet1.nrows):
     # 往数据库中 插入学生   默认密码123456
     studentsql = "insert into student(id,student_no,student_name,sex,password,class_id) values("+student_no+","+student_no+",\'"+student_name+"\',"+str(sex)+",\'e10adc3949ba59abbe56e057f20f883e\',"+classid+")"
     print(studentsql)
-    try:
-        # 执行sql语句
-        cur.execute(studentsql)
-        # 提交到数据库执行
-        conn.commit()
-    except:
-        # 如果发生错误则回滚
-        conn.rollback()
-        print("出错了")
-        break
+    # try:
+    #     # 执行sql语句
+    #     cur.execute(studentsql)
+    #     # 提交到数据库执行
+    #     conn.commit()
+    # except:
+    #     # 如果发生错误则回滚
+    #     conn.rollback()
+    #     print("出错了")
+    #     break

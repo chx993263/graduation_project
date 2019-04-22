@@ -10,8 +10,8 @@ from django.core.paginator import Paginator
 #获取本机电脑名
 myname = socket.getfqdn(socket.gethostname(  ))
 #获取本机ip
-addr = socket.gethostbyname(myname)
-# addr = '10.20.8.175'
+# addr = socket.gethostbyname(myname)
+addr = '10.20.8.175'
 
 conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
 # conn = pymysql.connect(host='10.20.8.175', user='root', passwd='njit', db='attendancesystem', port=3306, charset='utf8')
@@ -86,7 +86,7 @@ def index(request):
 
 # 主页
 def home(request):
-    noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from performance,student,subject,behavior,class where class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id order by id desc limit 0,3"
+    noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from curriculum,performance,student,subject,behavior,class where curriculum.class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id order by id desc limit 0,3"
     cur.execute(noticesql)
     noticeList = cur.fetchall()
     # 获取今日违纪人数
@@ -437,6 +437,53 @@ def delcurl(request):
 
 
 def absence(request):
+    classSql = "select id,class_name from class"
+    cur.execute(classSql)
+    classList = cur.fetchall()
+    actSql = "select id,behavior_name from behavior where id <= 3"
+    cur.execute(actSql)
+    actList = cur.fetchall()
+    classid = 0
+    actid = 0
+    date = ''
+    pageNo = 1
+    likestudent = ''
+    if request.method == 'POST':
+        actid = int(request.POST['actid'])
+        date = request.POST['date']
+        classid = int(request.POST['classid'])
+        likestudent = request.POST['likestudent']
+        pageNo = request.POST['pageNo']
+    info1 = "from performance,student,subject,behavior,class,curriculum where curriculum.id = curriculum_id and curriculum.class_id = class.id and student.id = performance.student_id and subject.id = subject_id and behavior.id = behavior_id and behavior.id <=3 "
+    info2 = ''
+    info3 = ''
+    info4 = ''
+    info5 = ''
+    info6 = ' order by performance.id desc '
+    info7 = ''
+    if (actid != 0):
+        info2 = "and behavior.id = " + str(actid)
+    if (date != ''):
+        info3 = "and time like \'%" + date + "%\'"
+    if (classid != 0):
+        info4 = "and curriculum.class_id = " + str(classid)
+    if (likestudent != ''):
+        info5 = "and student_name like \'%" + likestudent + "%\'"
+    # 获取总的个数
+    str1 = "select count(1) {} {} {} {} {} {} {}"
+    getCount = str1.format(info1, info2, info3, info4, info5, info6, info7)
+    cur.execute(getCount)
+    pageCount = cur.fetchone()[0]
+    pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
+    info7 = "limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+    str2 = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time {} {} {} {} {} {} {}"
+    testSql = str2.format(info1, info2, info3, info4, info5, info6, info7)
+    cur.execute(testSql)
+    noticeList = cur.fetchall()
+    pageinfo = {
+        "pageNo": pageNo,
+        "totalPage": pagebean.getTotalPage()
+    }
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
             request.session['log_id'])
@@ -448,7 +495,11 @@ def absence(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-    return render(request, "absence.html")
+    return render(request, "absence.html",
+                  {'date': date, 'classid': classid, 'likestudent': likestudent, 'actid': actid,
+                   'likestudent': likestudent, 'classList': classList, 'actList': actList, 'noticeList': noticeList,
+                   'pageinfo': pageinfo})
+
 def mesage(request):
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
@@ -482,7 +533,7 @@ def notice(request):
     classSql = "select id,class_name from class"
     cur.execute(classSql)
     classList = cur.fetchall()
-    actSql = "select id,behavior_name from behavior"
+    actSql = "select id,behavior_name from behavior where id > 3"
     cur.execute(actSql)
     actList = cur.fetchall()
     classid = 0
@@ -496,7 +547,7 @@ def notice(request):
         classid = int(request.POST['classid'])
         likestudent = request.POST['likestudent']
         pageNo = request.POST['pageNo']
-    info1 = "from performance,student,subject,behavior,class where class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id "
+    info1 = "from performance,student,subject,behavior,class,curriculum where curriculum.id = curriculum_id and curriculum.class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id and behavior.id > 3 "
     info2 = ''
     info3 = ''
     info4 = ''
@@ -508,7 +559,7 @@ def notice(request):
     if (date != ''):
         info3 = "and time like \'%"+date+"%\'"
     if (classid != 0):
-        info4 = "and class_id = "+str(classid)
+        info4 = "and curriculum.class_id = "+str(classid)
     if (likestudent != ''):
         info5 = "and student_name like \'%"+likestudent+"%\'"
     # 获取总的个数
@@ -546,8 +597,21 @@ def delacts(request):
     try:
         # 执行sql语句
         for id in ids:
-            deln = "delete from performance where id = "+id
-            cur.execute(deln)
+            delp = "delete from performance where id = "+id
+            getinfo = "select student_id,behavior_id,behavior_score from performance,behavior where behavior_id = behavior.id and performance.id = " + id
+            cur.execute(getinfo)
+            info = cur.fetchone()
+            updatestatistics = ''
+            if (int(info[1]) > 3):
+                acttype = 1
+                updatestatistics = "update statistics set absence_count = absence_count-1 ,score = score +" + str(
+                    info[2]) + " where id =" + str(info[0])
+            else:
+                updatestatistics = "update statistics set violation_count = violation_count-1 ,score = score+" + str(
+                    info[2]) + " where id =" + str(info[0])
+            print(updatestatistics)
+            cur.execute(delp)
+            cur.execute(updatestatistics)
         # 提交到数据库执行
         log = "insert into log(admin,content,date,level) values(\'" + request.session['adminName'] + "\',\'ADMIN:" + \
               request.session['adminName'] + " done bulk delete on behavioral notice',\'" + getTime.now() + "\',3)"
@@ -561,18 +625,35 @@ def delacts(request):
 # 单个删除
 def delact(request):
     id = request.GET['actid']
+    acttype = 0
     studentname = request.GET["studentname"]
     delp = "delete from performance where id = " + id
     log = "insert into log(admin,content,date,level) values(\'" + request.session['adminName'] + "\',\'ADMIN:" + request.session['adminName'] + " delete the student:" + studentname + " performance notice\' ,\'" + getTime.now() + "\',3)"
     try:
+        getinfo = "select student_id,behavior_id,behavior_score from performance,behavior where behavior_id = behavior.id and performance.id = " + id
+        cur.execute(getinfo)
+        info = cur.fetchone()
+        updatestatistics = ''
+        if (int(info[1]) > 3):
+            acttype = 1
+            updatestatistics = "update statistics set absence_count = absence_count-1 ,score = score +" + str(info[2]) + " where id =" +str(info[0])
+        else:
+            updatestatistics = "update statistics set violation_count = violation_count-1 ,score = score+" + str(info[2]) + " where id =" + str(info[0])
+        print(updatestatistics)
         cur.execute(delp)
+        cur.execute(updatestatistics)
         # 提交到数据库执行
         cur.execute(log)
         conn.commit()
-    except:
+    except Exception as err:
+        print(err)
         # 如果发生错误则回滚
         conn.rollback()
-    return notice(request)
+        return render(request, "fail.html")
+    if(acttype):
+        return notice(request)
+    else:
+        return absence(request)
 
 # 显示学生违纪图片
 def showimg(request):
@@ -608,12 +689,12 @@ def studentstatistics(request):
     setclass = ''
     if (classid != 0):
         setclass = 'and class_id = '+str(classid)
-    getCount = "select count(1) from student where (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\')"+setclass
+    getCount = "select count(1) from statistics where student_name like \'%"+likestudent+"%\'"+setclass
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
-    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id ) as percount from student,performance,class where  class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student.id "
+    info1 = "select statistics.id,student_name,class_name,violation_count,absence_count,score from statistics,class where class_id = class.id and  student_name like \'%"+likestudent+"%\'"+setclass
     info2 = " order by id "
     info3 = ""
     if (ranktype == 1):
@@ -658,7 +739,7 @@ def classstatistics(request):
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
-    info1 = "select class.id,class_name,(select count(1) from student where class_id = class.id ) as personcount,(select count(1) from performance where classid = class.id) as percount from class,student,performance  where student_id = student.id group by class.id "
+    info1 = "select class.id,class_name,(select count(1) from statistics where class_id = class.id ) as personcount,(select sum(violation_count) from statistics where class_id = class.id) as percount,(select sum(absence_count) from statistics where class_id = class.id) as absencecount,(select avg(score) from statistics where class_id = class.id) as avgscore from class,statistics  where  class_id = class.id group by class.id "
     info2 = " order by id "
     info3 = ""
     if(ranktype == 1):
@@ -695,17 +776,17 @@ def showclass(request):
     pageNo = 1
     rank = 0
     ranktype = 0
-    classid = int(request.GET['class_id'])
     likestudent = ''
+    classid = int(request.GET['class_id'])
     setclass = ''
     if (classid != 0):
         setclass = 'and class_id = '+str(classid)
-    getCount = "select count(1) from student where (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\')"+setclass
+    getCount = "select count(1) from statistics where student_name like \'%"+likestudent+"%\'"+setclass
     # 获取总的个数
     cur.execute(getCount)
     pageCount = cur.fetchone()[0]
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
-    info1 = "select student.id,student_name,class_name,(select count(1) from performance where  student_id = student.id) as percount from student,performance,class where class_id = class.id and  (student_no like \'%"+likestudent+"%\' or student_name like \'%"+likestudent+"%\') "+setclass+" group by student_name "
+    info1 = "select statistics.id,student_name,class_name,violation_count,absence_count,score from statistics,class where class_id = class.id and  student_name like \'%"+likestudent+"%\'"+setclass
     info2 = " order by id "
     info3 = ""
     if (ranktype == 1):
@@ -823,6 +904,15 @@ def student_add(request):
             # 如果发生错误则回滚
             conn.rollback()
     return render(request, "student_add.html", {"classList": classList})
+
+# 批量添加学生
+def addstudents(request):
+    return render(request, "addstudents.html")
+def uploadfile(request):
+    uploadedFile = request.FILES.get('uploadfile')
+
+    print(uploadedFile)
+    return render(request,"addstudents.html")
 # 提交添加学生
 def addstudent(request):
     studentname = request.POST["student_name"]
@@ -1249,9 +1339,10 @@ def classtoupdate(request):
 def delclass(request):
     class_id = request.GET["class_id"]
     delcl = "delete from class where id = "+class_id
-    # 出了删除班级 还需要 删除学生， 删除 这个班的课程
+    # 出了删除班级 还需要 删除学生， 删除 这个班的课程  删这个班的违规
     delstu = "delete from student where class_id = "+class_id
     delsub = "delete from curriculum where class_id = "+class_id
+    delperfor = "delete from performance where classid = "+class_id
     classname = request.GET["class_name"]
     log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the classname: "+classname+" and more\',\'"+getTime.now()+"\',3)"
 
@@ -1260,6 +1351,7 @@ def delclass(request):
         cur.execute(delcl)
         cur.execute(delstu)
         cur.execute(delsub)
+        cur.execute(delperfor)
         # 添加到操作日志
         cur.execute(log)
         # 提交到数据库执行
