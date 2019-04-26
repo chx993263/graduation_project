@@ -905,14 +905,21 @@ def student_add(request):
             conn.rollback()
     return render(request, "student_add.html", {"classList": classList})
 
-# 批量添加学生
+# 批量添加学生   导入excel文件
 def addstudents(request):
     return render(request, "addstudents.html")
 def uploadfile(request):
     uploadedFile = request.FILES.get('uploadfile')
+    loglist = list()
+    fail = ''
+    # "导入失败，请检查一下导入的格式！！！"
+    flag = getMD5.getstudent(uploadedFile,loglist)
+    if flag==1:
+        fail = "导入失败，请检查一下导入的格式！！！"
+    return render(request,"uploadlog.html",{"loglist": loglist,"fail":fail})
 
-    print(uploadedFile)
-    return render(request,"addstudents.html")
+
+
 # 提交添加学生
 def addstudent(request):
     studentname = request.POST["student_name"]
@@ -1342,7 +1349,7 @@ def delclass(request):
     # 出了删除班级 还需要 删除学生， 删除 这个班的课程  删这个班的违规
     delstu = "delete from student where class_id = "+class_id
     delsub = "delete from curriculum where class_id = "+class_id
-    delperfor = "delete from performance where classid = "+class_id
+    delperfor = "delete from performance where class_id = "+class_id
     classname = request.GET["class_name"]
     log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the classname: "+classname+" and more\',\'"+getTime.now()+"\',3)"
 
@@ -1356,8 +1363,9 @@ def delclass(request):
         cur.execute(log)
         # 提交到数据库执行
         conn.commit()
-    except:
+    except Exception as e:
         # 如果发生错误则回滚
+        print(e)
         conn.rollback()
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(

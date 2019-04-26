@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>uploadlog</title>
+</head>
+<body>
+<h1>导入学生输出日志</h1>
+    <h2 style="color: red;">{{fail}}</h2>
+    <!--返回 学生导入情况-->
+    {% block upload %}
+                {% for item in loglist %}
+                    <h6>{{item}}</h6>
+                {% endfor %}
+    {% endblock %}
+</body>
+</html>
