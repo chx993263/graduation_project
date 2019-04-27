@@ -68,9 +68,9 @@
             {% endblock %}
         </select></div>
         </div>
-        <div class="l_left"><label>受惩人：</label><input type="text" placeholder="请输入学生姓名" autocomplete="off" name="likestudent" value="{{likestudent}}"></div>
-        <div class="l_left"><label>行为时间：</label><input id="demo" placeholder="输入年月" autocomplete="off" name="date" value="{{date}}"/></div>
-        <div class="l_left"><label>所在班级：</label><select name="classid">
+        <div class="l_left"><label>受惩人：</label><input type="text" placeholder="请输入学生姓名" autocomplete="off" name="likestudent" value="{{likestudent}}" onchange="change()"></div>
+        <div class="l_left"><label>行为时间：</label><input id="demo" placeholder="输入年月" autocomplete="off" name="date" value="{{date}}" onchange="change()"/></div>
+        <div class="l_left"><label>所在班级：</label><select name="classid" onchange="change()">
             <option value="0">--可选择班级--</option>
             {% block classes %}
                 {% for class in classList %}
@@ -149,6 +149,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
+    function change() {
+        $("form").submit();
+    }
     function showimg(id){
         layer.open({
             type: 2,

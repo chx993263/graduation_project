@@ -19,8 +19,10 @@ def getstudent(file,loglist):
     sheet1 = workbook.sheet_by_index(0)  # sheet索引从0开始
     # sheet的名称，行数，列数  说明拿到了！
     print(sheet1.name, sheet1.nrows, sheet1.ncols)
+    # 进行验证
     if(sheet1.ncols != 5):
         flag = 1
+        return flag
 
     # 正式开始
     # 进行逐行遍历
@@ -39,6 +41,9 @@ def getstudent(file,loglist):
         sex = 1
         if (sex_name == '女'):
             sex = 0
+        if(len(student_name)>= 5 or student_no.isnumeric() == False or len(sex_name) != 1):
+            flag = 1
+            return flag
         # 拿到 classid, 到数据库中查看是否已存在 该班级，如果不存在，则添加新的班级
         isexistsql = "select count(1) from class where id ="+classid
         cur.execute(isexistsql)
@@ -57,8 +62,7 @@ def getstudent(file,loglist):
                 # 如果发生错误则回滚
                 conn.rollback()
                 loglist.append("添加新的班级:" + class_name + " 失败！")
-                flag = 1
-                break
+                continue
         # 往数据库中 插入学生   默认密码123456
         studentsql = "insert into student(id,student_no,student_name,sex,password,class_id) values(" + student_no + "," + student_no + ",\'" + student_name + "\'," + str(
             sex) + ",\'e10adc3949ba59abbe56e057f20f883e\'," + classid + ")"
@@ -75,7 +79,7 @@ def getstudent(file,loglist):
             # 如果发生错误则回滚
             conn.rollback()
             loglist.append("学生：" + student_no + "-" + student_name + "添加失败！，可能是该同学已存在。")
-            break
+            continue
     loglist.append("end...")
     cur.close()
     conn.close()

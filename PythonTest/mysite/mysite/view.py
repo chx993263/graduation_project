@@ -86,11 +86,13 @@ def index(request):
 
 # 主页
 def home(request):
-    noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from curriculum,performance,student,subject,behavior,class where curriculum.class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id order by id desc limit 0,3"
+    noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from curriculum,performance,student,subject,behavior,class where curriculum.class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id and curriculum.id = curriculum_id order by id desc limit 0,3"
     cur.execute(noticesql)
     noticeList = cur.fetchall()
     # 获取今日违纪人数
-    today = getTime.today();
+    today = getTime.today()
+    year = getTime.year()+"年"+getTime.month()+"月"
+    date = getTime.day()
     personNumsql = "select count(1) from performance where time like \'%"+today+"%\'"
     cur.execute(personNumsql)
     personNum = cur.fetchone()[0]
@@ -105,7 +107,7 @@ def home(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-    return render(request, "home.html",{"personNum":personNum,"noticeList":noticeList})
+    return render(request, "home.html",{"personNum":personNum,"noticeList":noticeList,"year":year,"date":date})
 
 # 工作日志
 def worklog(request):
@@ -145,7 +147,7 @@ def worklog(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-    return render(request, "work.html", {'worklogList': worklogList, 'date': date, 'pageinfo' : pageinfo})
+    return render(request, "work.html", {'worklogList': worklogList, 'date': date, 'pageinfo' : pageinfo,"level":level})
 # 批量删除 工作日志
 def dellogs(request):
     delitems = request.POST['delitems']
@@ -311,20 +313,18 @@ def updatecurriculum(request):
     # 这里由于会出现自身冲突，所以我先删除，在添加，并设置事务，如果添加失败，则回滚
     try:
         delsql = "delete from curriculum where id = "+id
-        print(delsql)
         cur.execute(delsql)
         curlsql = "select * from curriculum "
         cur.execute(curlsql)
         curlinfo = cur.fetchall()
-        print(curlinfo)
         testsql = "select count(1) from curriculum where time = "+time+" and week = "+week+" and ( teacher_id = "+teacherid+" or site = \'"+site+"\' )"
         cur.execute(testsql)
         hasexist = cur.fetchone()[0]
         if(int(hasexist)):
-            # 场地或者 老师 存在时间冲突，返回失败页面
-            return render(request, "fail.html")
-        # 验证完成，进行添加操作
-        addsql = "insert into curriculum(subject_id,teacher_id,time,week,term,year,class_id,site) values("+subjectid+","+teacherid+","+time+","+week+","+term+","+year+","+classid+",\'"+site+"\')"
+            # 场地或者 老师 存在时间冲突,强制异常，数据进行回滚，返回失败页面
+            5/0
+        # 验证完成，进行添加操作  因为是修改，所以需要 保留之前的 ID
+        addsql = "insert into curriculum(id,subject_id,teacher_id,time,week,term,year,class_id,site) values("+id+","+subjectid+","+teacherid+","+time+","+week+","+term+","+year+","+classid+",\'"+site+"\')"
         try:
             # 执行sql语句
             cur.execute(addsql)
@@ -698,7 +698,11 @@ def studentstatistics(request):
     info2 = " order by id "
     info3 = ""
     if (ranktype == 1):
-        info2 = " order by percount "
+        info2 = " order by violation_count "
+    if (ranktype == 2):
+        info2 = " order by absence_count"
+    if (ranktype == 3):
+        info2 = " order by score"
     if (rank == 1):
         info3 = " desc "
     info4 = "  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
@@ -743,7 +747,11 @@ def classstatistics(request):
     info2 = " order by id "
     info3 = ""
     if(ranktype == 1):
-        info2 = " order by percount "
+        info2 = " order by percount"
+    if(ranktype == 2):
+        info2 = " order by absencecount"
+    if (ranktype == 3):
+        info2 = " order by avgscore"
     if(rank == 1):
         info3 = " desc "
     info4 = "  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
@@ -916,6 +924,17 @@ def uploadfile(request):
     flag = getMD5.getstudent(uploadedFile,loglist)
     if flag==1:
         fail = "导入失败，请检查一下导入的格式！！！"
+    else:
+        log = "insert into log(admin,content,date,level) values(\'" + request.session['adminName'] + "\',\'The ADMIN:" + \
+              request.session['adminName'] + "has added students in batches.\',\'" + getTime.now() + "\',2)"
+        try:
+            # 添加到操作日志
+            cur.execute(log)
+            # 提交到数据库执行
+            conn.commit()
+        except:
+            # 如果发生错误则回滚
+            conn.rollback()
     return render(request,"uploadlog.html",{"loglist": loglist,"fail":fail})
 
 
@@ -989,7 +1008,6 @@ def studenttoupdate(request):
     tel = request.POST["tel"]
     notes = request.POST["notes"]
     updatestu = "update student set student_name = \'"+studentname+"\',student_no = \'"+student_no+"\',password = \'"+getMD5.md5(password)+"\',tel = \'"+tel+"\',sex = "+sex+",class_id = "+class_id+", notes = \'"+notes+"\' where id ="+student_id
-    print(updatestu)
     log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" update the student: "+studentname+"\',\'"+getTime.now()+"\',2)"
     try:
         # 执行sql语句

@@ -60,8 +60,8 @@
 <div class="l_left" style="width: 100%">
 <div class="query">
     <div class="tabe_bot">
-        <div class="l_left"><label>学生名：</label><input type="text" placeholder="请输入姓名" autocomplete="off" name="likestudent" value="{{likestudent}}"></div>
-        <div class="l_left"><label>所在班级：</label><select name="classid">
+        <div class="l_left"><label>学生名：</label><input type="text" placeholder="请输入姓名" autocomplete="off" name="likestudent" value="{{likestudent}}" onchange="change()"></div>
+        <div class="l_left"><label>所在班级：</label><select name="classid" onchange="change()">
             <option value="0">--可选择班级--</option>
             {% block classes %}
                 {% for item in classList %}
@@ -137,7 +137,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
-
+    function change() {
+        $("form").submit();
+    }
     function openlayer(id){
         layer.open({
             type: 2,

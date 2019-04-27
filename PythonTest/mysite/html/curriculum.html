@@ -58,17 +58,17 @@
 <div class="title"><h2>通知管理</h2></div>
 <div class="query">
     <div class="tabe_bot">
-                <div class="l_left"><label>选择学期：</label><select name="year">
+                <div class="l_left"><label>选择学期：</label><select name="year" onchange="change()">
             <option value="1"{% if year == 1 %} selected="selected"{% endif %}>第一学年</option>
             <option value="2"{% if year == 2 %} selected="selected"{% endif %}>第二学年</option>
             <option value="3"{% if year == 3 %} selected="selected"{% endif %}>第三学年</option>
             <option value="4"{% if year == 4 %} selected="selected"{% endif %}>第四学年</option>
         </select></div>
-        <div class="l_left"><label>选择学期：</label><select name="term">
+        <div class="l_left"><label>选择学期：</label><select name="term" onchange="change()">
             <option value="1"{% if term == 1 %} selected="selected"{% endif %}>第一学期</option>
             <option value="2"{% if term == 2 %} selected="selected"{% endif %}>第二学期</option>
         </select></div>
-        <div class="l_left"><label>所在班级：</label><select name="classid">
+        <div class="l_left"><label>所在班级：</label><select name="classid" onchange="change()">
             <option value="0">--可选择班级--</option>
             {% block classes %}
                 {% for class in classList %}
@@ -76,7 +76,7 @@
                 {% endfor %}
             {% endblock %}
         </select></div>
-        <button class="tabe_btn ">查询</button>
+        <!--<button class="tabe_btn ">查询</button>-->
         <div class="clear"></div>
     </div>
 </div>
@@ -148,6 +148,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
+    function change() {
+        $("form").submit();
+    }
     function showlayer(id){
         layer.open({
             type: 2,

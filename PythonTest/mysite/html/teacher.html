@@ -60,7 +60,7 @@
 <div class="l_left" style="width: 100%">
 <div class="query">
     <div class="tabe_bot">
-        <div class="l_left"><label>教师/工号:</label><input type="text" placeholder="请输入教师姓名或者工号" name="liketeacher" value="{{liketeacher}}"></div>
+        <div class="l_left"><label>教师/工号:</label><input type="text" placeholder="请输入教师姓名或者工号" name="liketeacher" value="{{liketeacher}}" onchange="change()"></div>
         <button class="tabe_btn " type="submit">查询</button>
         <div class="clear"></div>
     </div>
@@ -127,7 +127,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
-
+    function change() {
+        $("form").submit();
+    }
     function openlayer(id){
         layer.open({
             type: 2,

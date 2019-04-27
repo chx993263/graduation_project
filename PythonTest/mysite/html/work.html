@@ -21,14 +21,14 @@
 <div class="query">
     <div class="tabe_bot">
         <div class="l_left"><label>日志级别：</label>
-            <select name="level" >
+            <select name="level" onchange="change()">
                 <option value="0">--可选择级别--</option>
                 <option value="1"{% if level == 1 %} selected="selected"{% endif %}>1</option>
                 <option value="2"{% if level == 2 %} selected="selected"{% endif %}>2</option>
                 <option value="3"{% if level == 3 %} selected="selected"{% endif %}>3</option>
             </select></div>
         <div class="l_left"><label>生成时间：</label>
-            <input id="demo" placeholder="输入年月" name="date" value="{{date}}" autocomplete="off" /></div>
+            <input id="demo" placeholder="输入年月" name="date" value="{{date}}" autocomplete="off" onhaschange="change()"/></div>
         <button class="tabe_btn ">查询</button>
         <div class="clear"></div>
     </div>
@@ -97,6 +97,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
+    function change() {
+        $("form").submit();
+    }
     function delall() {
         var checkedNum = $("input[name='ids']:checked").length;
         if (checkedNum == 0) {

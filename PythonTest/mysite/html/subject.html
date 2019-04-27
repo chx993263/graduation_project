@@ -25,7 +25,7 @@
 
             <div class="tabe_bot">
                 <div class="l_left"><label>课程名称：</label>
-                    <input type="text" placeholder="请输入课程名称" name="likesubject" value="{{likesubject }}"></div>
+                    <input type="text" placeholder="请输入课程名称" name="likesubject" value="{{likesubject }}" onchange="change()"></div>
 
 
             <button class="tabe_btn " type="submit" >查询</button>
@@ -97,7 +97,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
-
+    function change() {
+        $("form").submit();
+    }
     function openlayer(id){
         layer.open({
             type: 2,

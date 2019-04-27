@@ -22,7 +22,7 @@
 <div class="title"><h2>行为管理</h2></div>
 <div class="query">
     <div class="tabe_bot">
-        <div class="l_left"><label>行为名称：</label><input type="text" placeholder="请输入行为名称" name="likebehavior" value="{{likebehavior}}" ></div>
+        <div class="l_left"><label>行为名称：</label><input type="text" placeholder="请输入行为名称" name="likebehavior" value="{{likebehavior}}" onchange="change()"></div>
 
 
         <button class="tabe_btn ">查询</button>
@@ -93,7 +93,9 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
-
+    function change() {
+        $("form").submit();
+    }
     function openlayer(id){
         layer.open({
             type: 2,

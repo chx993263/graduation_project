@@ -59,12 +59,12 @@
 <div class="query">
     <div class="tabe_bot">
         <div class="l_left">
-        	<div class="l_left"><label>显示排序：</label><select name="rank">
+        	<div class="l_left"><label>显示排序：</label><select name="rank" onchange="change()">
                 <option value="0" {% if 0 == rank %} selected="selected"{% endif %}>正序</option>
                 <option value="1" {% if 1 == rank %} selected="selected"{% endif %}>倒序</option>
         </select></div>
         </div>
-        <div class="l_left"><label>班内统计：</label><select name="classid">
+        <div class="l_left"><label>班内统计：</label><select name="classid" onchange="change()">
             <option value="0">--可选择班级--</option>
             {% block classes %}
                 {% for class in classList %}
@@ -73,15 +73,15 @@
             {% endblock %}
         </select></div>
         <div class="l_left">
-        	<div class="l_left"><label>排序类型：</label><select name="ranktype">
+        	<div class="l_left"><label>排序类型：</label><select name="ranktype" onchange="change()">
                 <option value="0" {% if 0 == ranktype %} selected="selected"{% endif %}>默认排序</option>
                 <option value="1" {% if 1 == ranktype %} selected="selected"{% endif %}>按违纪次数</option>
                 <option value="2" {% if 2 == ranktype %} selected="selected"{% endif %}>按缺勤次数</option>
                 <option value="3" {% if 3 == ranktype %} selected="selected"{% endif %}>按综合分数</option>
         </select></div>
         </div>
-         <div class="l_left"><label>快速查找：</label><input type="text" placeholder="请输入学生姓名或者学号" autocomplete="off" name="likestudent" value="{{likestudent}}"></div>
-        <button class="tabe_btn ">查询</button>
+         <div class="l_left"><label>快速查找：</label><input type="text" placeholder="请输入学生姓名或者学号" autocomplete="off" name="likestudent" value="{{likestudent}}" onchange="change()"></div>
+        <!--<button class="tabe_btn ">查询</button>-->
         <div class="clear"></div>
     </div>
 </div>
@@ -150,5 +150,8 @@
 </script>
 <script src="{% static 'js/layer_v2.1/layer/layer.js' %}"></script>
 <script type="text/javascript">
+    function change() {
+        $("form").submit();
+    }
 </script>
 </html>
