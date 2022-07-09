@@ -1,337 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd347df9-f719-4a81-8568-6083bc666950" name="Default Changelist" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/absence.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/absence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/behavior.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/behavior.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/class.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/class.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/classstatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/classstatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/curriculum.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/curriculum.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/notice.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/notice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/schedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/studentstatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/studentstatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/subject.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/subject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/teacher.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/html/work.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/html/work.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/getMD5.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/getMD5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/getTime.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/getTime.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/view.py" afterDir="false" />
-    </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="3bf89571-23da-4bc4-82de-19311f6d8937" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PythonTest$testimage.coverage" NAME="testimage Coverage Results" MODIFIED="1555659203200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$urls.coverage" NAME="urls Coverage Results" MODIFIED="1556357795562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$getMD5.coverage" NAME="getMD5 Coverage Results" MODIFIED="1554949334812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1554779903012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$view.coverage" NAME="view Coverage Results" MODIFIED="1555810375642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$testfile.coverage" NAME="testfile Coverage Results" MODIFIED="1555740113292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/testmodel/migrations" />
-    <SUITE FILE_PATH="coverage/PythonTest$randomlyadded.coverage" NAME="randomlyadded Coverage Results" MODIFIED="1555833698733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$urls__1_.coverage" NAME="urls (1) Coverage Results" MODIFIED="1554793126365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-    <SUITE FILE_PATH="coverage/PythonTest$addteacher.coverage" NAME="addteacher Coverage Results" MODIFIED="1555823834194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/mysite/view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="933" column="25" lean-forward="true" selection-start-line="933" selection-start-column="25" selection-end-line="933" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/behavior.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1587">
-              <caret line="96" column="27" lean-forward="true" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mysite/mysite/getMD5.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="85" column="15" lean-forward="true" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/subject.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="99" column="23" lean-forward="true" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/mysite/getTime.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1886">
-              <caret line="104" column="35" lean-forward="true" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/student.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="72" column="33" lean-forward="true" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-              <folding>
-                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#2;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/teacher.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="64" column="33" lean-forward="true" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/class.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/html/work.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="877">
-              <caret line="100" column="27" lean-forward="true" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <SUITE FILE_PATH="coverage/PythonTest$middleware.coverage" NAME="middleware Coverage Results" MODIFIED="1557796349102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/mysite" />
+    <SUITE FILE_PATH="coverage/PythonTest$view.coverage" NAME="view Coverage Results" MODIFIED="1560494841015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite" />
+    <SUITE FILE_PATH="coverage/PythonTest$addimg.coverage" NAME="addimg Coverage Results" MODIFIED="1558858896895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite/testmodel" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pageBean.getPageNo()</find>
-      <find>gif</find>
-      <find>teacher_tail</find>
-      <find>subject_tail</find>
-      <find>student_tail</find>
-      <find>student</find>
-      <find>delstudent</find>
-      <find>udpate</find>
-      <find>update</find>
-      <find>noti</find>
-      <find>home</find>
-      <find>notice</find>
-      <find>sch</find>
       <find>def student</find>
-      <find>pageBean.PageTest</find>
-      <find>delclass</find>
-      <find>delcla</find>
-      <find>notic</find>
-      <find>if request.method == 'POST':</find>
-      <find>classst</find>
-      <find>delcl</find>
-      <find>def no</find>
-      <find>def classst</find>
+      <find>def curr</find>
+      <find>def addst</find>
+      <find>def delclass</find>
+      <find>def addstu</find>
+      <find>def noti</find>
+      <find>def addstud</find>
+      <find>批量</find>
+      <find>def delst</find>
+      <find>dialog_bg.gif</find>
       <find>def notice</find>
-      <find>def ab</find>
-      <find>addstudent</find>
-      <find>def work</find>
-      <find>def hom</find>
-      <find>updatecu</find>
-      <find>def</find>
+      <find>def dela</find>
     </findStrings>
   </component>
-  <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="蔡海翔" />
-      </list>
-    </option>
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/mysite/testmodel/models.py" />
-        <option value="$PROJECT_DIR$/mysite/html/class_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/success.html" />
-        <option value="$PROJECT_DIR$/mysite/mysite/insertlog.py" />
-        <option value="$PROJECT_DIR$/mysite/html/class_update.html" />
-        <option value="$PROJECT_DIR$/mysite/static/js/modifypwd.js" />
-        <option value="$PROJECT_DIR$/mysite/static/js/index.js" />
-        <option value="$PROJECT_DIR$/mysite/mysite/settings.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/pageBean.py" />
-        <option value="$PROJECT_DIR$/mysite/html/subject_update.html" />
-        <option value="$PROJECT_DIR$/mysite/html/subject_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/behavior_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/behavior_update.html" />
-        <option value="$PROJECT_DIR$/mysite/static/css/jquery.treetable.theme.default.css" />
-        <option value="$PROJECT_DIR$/mysite/html/teacher_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/teacher_add.html" />
-        <option value="$PROJECT_DIR$/mysite/html/teacher_update.html" />
-        <option value="$PROJECT_DIR$/mysite/html/student_update.html" />
-        <option value="$PROJECT_DIR$/mysite/html/student_add.html" />
-        <option value="$PROJECT_DIR$/mysite/html/curriculum_add.html" />
-        <option value="$PROJECT_DIR$/mysite/html/curriculum_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/student_tail.html" />
-        <option value="$PROJECT_DIR$/mysite/html/mesage.html" />
-        <option value="$PROJECT_DIR$/mysite/html/login.html" />
-        <option value="$PROJECT_DIR$/mysite/html/fail.html" />
-        <option value="$PROJECT_DIR$/mysite/mysite/testimage.py" />
-        <option value="$PROJECT_DIR$/mysite/html/showimg.html" />
-        <option value="$PROJECT_DIR$/mysite/html/index.html" />
-        <option value="$PROJECT_DIR$/mysite/testmodel/migrations/testfile.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/addteacher.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/randomlyadded.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/addstudentandclass.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/urls.py" />
-        <option value="$PROJECT_DIR$/mysite/html/uploadlog.html" />
-        <option value="$PROJECT_DIR$/mysite/html/addstudents.html" />
-        <option value="$PROJECT_DIR$/mysite/mysite/getTime.py" />
-        <option value="$PROJECT_DIR$/mysite/html/home.html" />
-        <option value="$PROJECT_DIR$/mysite/html/classstatistics.html" />
-        <option value="$PROJECT_DIR$/mysite/html/studentstatistics.html" />
-        <option value="$PROJECT_DIR$/mysite/html/work.html" />
-        <option value="$PROJECT_DIR$/mysite/html/schedule.html" />
-        <option value="$PROJECT_DIR$/mysite/html/notice.html" />
-        <option value="$PROJECT_DIR$/mysite/html/curriculum.html" />
-        <option value="$PROJECT_DIR$/mysite/html/absence.html" />
-        <option value="$PROJECT_DIR$/mysite/html/behavior.html" />
-        <option value="$PROJECT_DIR$/mysite/html/student.html" />
-        <option value="$PROJECT_DIR$/mysite/html/teacher.html" />
-        <option value="$PROJECT_DIR$/mysite/html/class.html" />
-        <option value="$PROJECT_DIR$/mysite/html/subject.html" />
-        <option value="$PROJECT_DIR$/mysite/mysite/view.py" />
-        <option value="$PROJECT_DIR$/mysite/mysite/getMD5.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="322" />
-    <option name="y" value="170" />
-    <option name="width" value="1400" />
-    <option name="height" value="913" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="PythonTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonTest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PythonTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonTest" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PythonTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonTest" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1jaKKc4C0pBF4XCj18iH2gqckaN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.jscs" value="true" />
-    <property name="node.js.path.for.package.jscs" value="project" />
-    <property name="node.js.selected.package.jscs" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\bishe\PythonTest\mysite\mysite" />
-      <recent name="D:\PythonTest\mysite\static" />
-      <recent name="D:\PythonTest\mysite" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\bishe\PythonTest\mysite\static\images" />
-      <recent name="D:\bishe\PythonTest\mysite\html" />
-      <recent name="D:\bishe\PythonTest\mysite\mysite" />
-      <recent name="D:\PythonTest\mysite\html" />
-      <recent name="D:\PythonTest\mysite\static\js" />
+      <recent name="D:\python项目\PythonTest\mysite\testmodel" />
+      <recent name="D:\python项目\PythonTest\mysite\testmodel\migrations" />
+      <recent name="D:\python项目\PythonTest\mysite\static\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\python项目\PythonTest\mysite\testmodel" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.urls">
-    <configuration name="addteacher" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.view">
+    <configuration name="addimg" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonTest" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mysite/testmodel" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/testmodel/addimg.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="middleware" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PythonTest" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -344,7 +94,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/mysite/addteacher.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/mysite/middleware.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -353,51 +103,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="randomlyadded" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PythonTest" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mysite/mysite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/mysite/randomlyadded.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="testfile" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PythonTest" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mysite/testmodel/migrations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\bishe\PythonTest\mysite\mysite\addstudentandclass.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="urls" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="view" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PythonTest" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -415,466 +121,113 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="true" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="view" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PythonTest" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mysite/mysite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/mysite/view.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Python.urls" />
-      <item itemvalue="Python.view" />
-      <item itemvalue="Python.testfile" />
-      <item itemvalue="Python.addteacher" />
-      <item itemvalue="Python.randomlyadded" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.urls" />
-        <item itemvalue="Python.randomlyadded" />
-        <item itemvalue="Python.addteacher" />
         <item itemvalue="Python.view" />
-        <item itemvalue="Python.testfile" />
+        <item itemvalue="Python.addimg" />
+        <item itemvalue="Python.middleware" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cd347df9-f719-4a81-8568-6083bc666950" name="Default Changelist" comment="" />
-      <created>1554684456732</created>
+      <changelist id="3bf89571-23da-4bc4-82de-19311f6d8937" name="Default Changelist" comment="" />
+      <created>1557102746417</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1554684456732</updated>
-      <workItem from="1554684458632" duration="18966000" />
-      <workItem from="1554768526139" duration="7091000" />
-      <workItem from="1554776773454" duration="678000" />
-      <workItem from="1554777482323" duration="361000" />
-      <workItem from="1554778037274" duration="513000" />
-      <workItem from="1554778658588" duration="951000" />
-      <workItem from="1554779644420" duration="2246000" />
-      <workItem from="1554792675599" duration="520000" />
-      <workItem from="1554793623892" duration="5930000" />
-      <workItem from="1554855865370" duration="5404000" />
-      <workItem from="1554862931713" duration="2000" />
-      <workItem from="1554863016892" duration="13280000" />
-      <workItem from="1554943393728" duration="26335000" />
-      <workItem from="1554981175775" duration="433000" />
-      <workItem from="1554981645673" duration="6715000" />
-      <workItem from="1555114798989" duration="8491000" />
-      <workItem from="1555137864647" duration="9633000" />
-      <workItem from="1555200953654" duration="46314000" />
-      <workItem from="1555323906640" duration="10086000" />
-      <workItem from="1555375334157" duration="17434000" />
-      <workItem from="1555409381123" duration="30179000" />
-      <workItem from="1555549655777" duration="1474000" />
-      <workItem from="1555555238038" duration="13172000" />
-      <workItem from="1555634496954" duration="20408000" />
-      <workItem from="1555733368864" duration="5000000" />
-      <workItem from="1555741247812" duration="7391000" />
-      <workItem from="1555804533648" duration="21126000" />
-      <workItem from="1555833356335" duration="1857000" />
-      <workItem from="1555839275813" duration="2996000" />
-      <workItem from="1555891918520" duration="19420000" />
-      <workItem from="1555927365476" duration="525000" />
-      <workItem from="1556240987080" duration="7449000" />
-      <workItem from="1556330736933" duration="10505000" />
+      <updated>1557102746417</updated>
+      <workItem from="1557102748533" duration="6258000" />
+      <workItem from="1557114143435" duration="1467000" />
+      <workItem from="1557122642080" duration="1011000" />
+      <workItem from="1557123812360" duration="879000" />
+      <workItem from="1557135607776" duration="89000" />
+      <workItem from="1557275557340" duration="2160000" />
+      <workItem from="1557363089609" duration="3693000" />
+      <workItem from="1557440913793" duration="3757000" />
+      <workItem from="1557472027077" duration="2896000" />
+      <workItem from="1557475847356" duration="966000" />
+      <workItem from="1557529293262" duration="7013000" />
+      <workItem from="1557550778055" duration="5737000" />
+      <workItem from="1557620655556" duration="2503000" />
+      <workItem from="1557644081618" duration="2455000" />
+      <workItem from="1557794198436" duration="7866000" />
+      <workItem from="1557805065153" duration="1242000" />
+      <workItem from="1557878031923" duration="2713000" />
+      <workItem from="1557896010990" duration="2766000" />
+      <workItem from="1557966610389" duration="4671000" />
+      <workItem from="1557981046373" duration="4688000" />
+      <workItem from="1558148660545" duration="9840000" />
+      <workItem from="1558224413825" duration="2011000" />
+      <workItem from="1558226479411" duration="6000" />
+      <workItem from="1558228568832" duration="241000" />
+      <workItem from="1558231843368" duration="2503000" />
+      <workItem from="1558329450088" duration="23000" />
+      <workItem from="1558329487348" duration="1715000" />
+      <workItem from="1558674314300" duration="1465000" />
+      <workItem from="1558856731071" duration="1489000" />
+      <workItem from="1558858399375" duration="1749000" />
+      <workItem from="1558937890858" duration="588000" />
+      <workItem from="1559630159540" duration="372000" />
+      <workItem from="1559697618938" duration="329000" />
+      <workItem from="1559698002345" duration="522000" />
+      <workItem from="1559799937099" duration="8000" />
+      <workItem from="1560494823096" duration="623000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322885000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1864" height="1098" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14804469" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32976446" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49776536" weight="0.28907922" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993576" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32976446" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49944136" weight="0.32976446" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50223464" side_tool="true" weight="0.3843683" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32976446" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.32960895" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    <option name="totallyTimeSpent" value="88314000" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mysite/html/dossier_my.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/email.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5451" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/fcontract_sign.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/file_sign.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/filesign_tail.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/write_email.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/work_tail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3094" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/summary_special.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/summary_meeting.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/rules.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/role.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/train_tail01.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/Role_Tail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/mywork.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/mytrain.html" />
-    <entry file="file://$PROJECT_DIR$/mysite/html/recode_tail01.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-897" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/notic_tail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/mesage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/student_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/student_tail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="46" column="126" selection-start-line="46" selection-start-column="126" selection-end-line="46" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-1360073504/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="339" column="11" selection-start-line="339" selection-start-column="11" selection-end-line="339" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/python 3.5/Lib/site-packages/pymysql/converters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/fail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="67" column="93" selection-start-line="67" selection-start-column="93" selection-end-line="67" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/showimg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/testimage.py" />
-    <entry file="file://D:/python 3.5/Lib/site-packages/xlrd/sheet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="411" selection-start-line="411" selection-end-line="411" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/addteacher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding>
-            <element signature="e#38#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1357">
-          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2757" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/randomlyadded.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="54" column="17" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/addstudentandclass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#38#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/uploadlog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/addstudents.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/getTime.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/studentstatistics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="149" column="9" lean-forward="true" selection-start-line="149" selection-start-column="9" selection-end-line="149" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/classstatistics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="142" selection-start-line="142" selection-end-line="144" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/schedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#3;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#4;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1886">
-          <caret line="104" column="35" lean-forward="true" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/curriculum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/notice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="152" column="27" lean-forward="true" selection-start-line="152" selection-start-column="27" selection-end-line="152" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/absence.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="150" column="23" lean-forward="true" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/work.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="877">
-          <caret line="100" column="27" lean-forward="true" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="72" column="33" lean-forward="true" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#2;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/teacher.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="64" column="33" lean-forward="true" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/behavior.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1587">
-          <caret line="96" column="27" lean-forward="true" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/subject.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="99" column="23" lean-forward="true" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/html/class.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="933" column="25" lean-forward="true" selection-start-line="933" selection-start-column="25" selection-end-line="933" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mysite/getMD5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="85" column="15" lean-forward="true" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="128" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604037069449">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state x="128" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1345.960@0.0.1345.960" timestamp="1604037069449" />
+    <state x="453" y="236" key="FileChooserDialogImpl" timestamp="1604037056338">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state x="453" y="236" key="FileChooserDialogImpl/0.0.1345.960@0.0.1345.960" timestamp="1604037056338" />
+    <state width="1323" height="254" key="GridCell.Tab.0.bottom" timestamp="1604037108862">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state width="1323" height="254" key="GridCell.Tab.0.bottom/0.0.1345.960@0.0.1345.960" timestamp="1604037108862" />
+    <state width="1323" height="254" key="GridCell.Tab.0.center" timestamp="1604037108862">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state width="1323" height="254" key="GridCell.Tab.0.center/0.0.1345.960@0.0.1345.960" timestamp="1604037108862" />
+    <state width="1323" height="254" key="GridCell.Tab.0.left" timestamp="1604037108861">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state width="1323" height="254" key="GridCell.Tab.0.left/0.0.1345.960@0.0.1345.960" timestamp="1604037108861" />
+    <state width="1323" height="254" key="GridCell.Tab.0.right" timestamp="1604037108862">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state width="1323" height="254" key="GridCell.Tab.0.right/0.0.1345.960@0.0.1345.960" timestamp="1604037108862" />
+    <state x="174" y="123" key="SettingsEditor" timestamp="1604037438844">
+      <screen x="0" y="0" width="1345" height="960" />
+    </state>
+    <state x="174" y="123" key="SettingsEditor/0.0.1345.960@0.0.1345.960" timestamp="1604037438844" />
   </component>
 </project>

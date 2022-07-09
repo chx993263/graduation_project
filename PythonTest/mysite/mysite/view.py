@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
+# from django.shortcuts import redirect
 from django.http import HttpResponse
 from . import getTime
 from . import getMD5
@@ -6,13 +8,14 @@ from . import pageBean
 import pymysql
 import socket
 import json
-from django.core.paginator import Paginator
+import os
+# from django.core.paginator import Paginator
 #获取本机电脑名
 myname = socket.getfqdn(socket.gethostname(  ))
 #获取本机ip
-# addr = socket.gethostbyname(myname)
-addr = '10.20.8.175'
-
+addr = socket.gethostbyname(myname)
+# addr = ''
+# 连接数据库
 conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
 # conn = pymysql.connect(host='10.20.8.175', user='root', passwd='njit', db='attendancesystem', port=3306, charset='utf8')
 print(conn)
@@ -23,8 +26,19 @@ cur = conn.cursor()
 
 # 登录
 def login(request):
+    global conn, cur, addr
+    if not conn.ping():
+        conn = pymysql.connect(host='127.0.0.1', user='root', passwd='ok', db='attendancesystem', port=3306, charset='utf8')
+        cur = conn.cursor()
+        if request.META.get('HTTP_X_FORWARDED_FOR'):
+            addr = request.META.get("HTTP_X_FORWARDED_FOR")
+        else:
+            addr = request.META.get("REMOTE_ADDR")
+    return render(request, "login.html", {"msg": json.dumps('logout')})
+# 退出
+def logout(request):
+    request.session.clear()
     return render(request, "login.html")
-
 
 # 修改密码
 def modifypwd(request):
@@ -53,37 +67,46 @@ def modifypwd(request):
 
 # 主页
 def index(request):
-    username = request.POST['username']
-    print(username)
-    password = request.POST['password']
-    print(password)
-    testSql = "select id,count(1) from acct where adminName = \'"+username+"\' and password = \'"+getMD5.md5(password)+"\'"
-    cur.execute(testSql)
+    username= ''
+    password= ''
+    try:
+        username = request.POST['username']
+        print(username+"正在进行登录。。。")
+        password = request.POST['password']
+    except:
+        return render(request, "login.html", {"msg": json.dumps('logout')})
+    # testSql = "select id,count(1) from acct where adminName = \'"+username+"\' and password = \'"+getMD5.md5(password)+"\'"
+    # cur.execute(testSql)
+    # rs = cur.fetchone()
+    # 将用户名传入，搜索出id,密码以及是否存在该管理员用户。
+    adminSql = "select id,password,count(1) from acct where adminName = \'"+username+"\'"
+    cur.execute(adminSql)
     rs = cur.fetchone()
     # 记录登录管理员id
     acct_id = rs[0]
-    count = rs[1]
-    if count:
-        # 即将进入主页，记录用户登录
-        loginlog = "insert into loginlog(acct_id,loginTime,IPaddress,loginType) values("+str(acct_id)+",\'"+getTime.now()+"\', \'"+addr+"\', 1)"
-        request.session['log_id'] = 0
-        request.session['adminName'] = username
-        try:
-            # 执行sql语句
-            cur.execute(loginlog)
-            # 记录插入得log_id，方便后面进行跟踪更新下线
-            request.session['log_id'] = cur.lastrowid
-                # cur.lastrowid
-
-            # 提交到数据库执行
-            conn.commit()
-        except:
-            # 如果发生错误则回滚
-            conn.rollback()
-            return render(request, "login.html",{"msg":json.dumps('fail')})
-        return render(request, "index.html", {"adminName": username},{"msg":json.dumps('success')})
-    return render(request, "login.html",{"msg":json.dumps('fail')})
-
+    adminpwd = rs[1]
+    count = rs[2]
+    if(count):
+        if adminpwd == getMD5.md5(password):
+            # 即将进入主页，记录用户登录
+            loginlog = "insert into loginlog(acct_id,loginTime,IPaddress,loginType) values("+str(acct_id)+",\'"+getTime.now()+"\', \'"+addr+"\', 1)"
+            request.session['log_id'] = 0
+            request.session['adminName'] = username
+            try:
+                # 执行sql语句
+                cur.execute(loginlog)
+                # 记录插入得log_id，方便后面进行跟踪更新下线
+                request.session['log_id'] = cur.lastrowid
+                    # cur.lastrowid
+                # 提交到数据库执行
+                conn.commit()
+            except:
+                # 如果发生错误则回滚
+                conn.rollback()
+                return render(request, "login.html",{"adminName": username,"msg":json.dumps('fail')})
+            return render(request, "index.html", {"adminName": username},{"msg":json.dumps('success')})
+        return render(request, "login.html",{"adminName": username,"msg":json.dumps('fail')})
+    return render(request, "login.html", {"msg": json.dumps('noadmin')})
 # 主页
 def home(request):
     noticesql = "select performance.id,student_name,class_name,subject_name,behavior_name,performance.time from curriculum,performance,student,subject,behavior,class where curriculum.class_id = class.id and student.id = student_id and subject.id = subject_id and behavior.id = behavior_id and curriculum.id = curriculum_id order by id desc limit 0,3"
@@ -151,6 +174,7 @@ def worklog(request):
 # 批量删除 工作日志
 def dellogs(request):
     delitems = request.POST['delitems']
+    # 先将字符串进行解析，转化为全部存储id集合的集合形式
     ids = delitems.split(',')
     # 开始进行批量删除操作
     try:
@@ -317,7 +341,7 @@ def updatecurriculum(request):
         curlsql = "select * from curriculum "
         cur.execute(curlsql)
         curlinfo = cur.fetchall()
-        testsql = "select count(1) from curriculum where time = "+time+" and week = "+week+" and ( teacher_id = "+teacherid+" or site = \'"+site+"\' )"
+        testsql = "select count(1) from curriculum where year = "+year+" and term = "+term+" and  time = "+time+" and week = "+week+" and ( teacher_id = "+teacherid+" or site = \'"+site+"\' )"
         cur.execute(testsql)
         hasexist = cur.fetchone()[0]
         if(int(hasexist)):
@@ -386,7 +410,7 @@ def addcurriculum(request):
     year = request.POST["year"]
     site = request.POST["site"]
     # 进行简单的验证 时间跟场地冲突 时间跟老师冲突
-    testsql = "select count(1) from curriculum where time = "+time+" and week = "+week+" and ( teacher_id = "+teacherid+" or site = \'"+site+"\' )"
+    testsql = "select count(1) from curriculum where year = "+year+" and term = "+term+" and time = "+time+" and week = "+week+" and ( teacher_id = "+teacherid+" or site = \'"+site+"\' )"
     cur.execute(testsql)
     hasexist = cur.fetchone()[0]
     if(int(hasexist)):
@@ -657,6 +681,20 @@ def delact(request):
 
 # 显示学生违纪图片
 def showimg(request):
+    id = request.GET['id']
+    # 定义一个图片名称
+    imgflag = "media/img"+id+".png"
+    if(os.path.exists("./static/"+imgflag)):
+        # print("该图片在文件中已存在无需进入数据库查询！")
+        None
+    else:
+        imgsql = "select pic from performance where id ="+id
+        cur.execute(imgsql)
+        img = cur.fetchone()
+        fp = open("./static/"+imgflag, 'wb')
+        fp.write(img[0])
+        fp.close()
+    # img.save('img.png')
     if (request.session.get('log_id')):
         logout = "update loginlog set logoutTime = \'" + getTime.now() + "\' where id = " + str(
             request.session['log_id'])
@@ -668,7 +706,7 @@ def showimg(request):
         except:
             # 如果发生错误则回滚
             conn.rollback()
-    return render(request, "showimg.html")
+    return render(request, "showimg.html",{"img":imgflag})
 
 # 学生统计
 def studentstatistics(request):
@@ -848,9 +886,10 @@ def student(request):
     pagebean = pageBean.PageTest(int(pageNo), 10, pageCount)
     testSql = ''
     if(classid):
-        testSql = "select student.id,student_name,student_no,tel,sex,class_name from student,class where (student.student_name like \'%" + likestudent + "%\' or student.student_no like \'%" + likestudent + "%\') and student.class_id = class.id and class_id = "+str(classid)+" limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+        # (CASE WHEN u.timeType=2 THEN '每月第二天' WHEN u.timeType=4 THEN '每月第四天' END) AS timeType
+        testSql = "select student.id,student_name,student_no,tel,(case when sex=0 then '女' when sex=1 then '男' end) as sex,class_name from student,class where (student.student_name like \'%" + likestudent + "%\' or student.student_no like \'%" + likestudent + "%\') and student.class_id = class.id and class_id = "+str(classid)+" limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
     else:
-        testSql = "select student.id,student_name,student_no,tel,sex,class_name from student,class where (student.student_name like \'%" + likestudent + "%\' or student.student_no like \'%" + likestudent + "%\') and student.class_id = class.id  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
+        testSql = "select student.id,student_name,student_no,tel,(case when sex=0 then '女' when sex=1 then '男' end) as sex,class_name from student,class where (student.student_name like \'%" + likestudent + "%\' or student.student_no like \'%" + likestudent + "%\') and student.class_id = class.id  limit " + str(pagebean.getStartNum()) + "," + str(pagebean.getPageSize())
 
     cur.execute(testSql)
     studentList = cur.fetchall()
@@ -926,7 +965,7 @@ def uploadfile(request):
         fail = "导入失败，请检查一下导入的格式！！！"
     else:
         log = "insert into log(admin,content,date,level) values(\'" + request.session['adminName'] + "\',\'The ADMIN:" + \
-              request.session['adminName'] + "has added students in batches.\',\'" + getTime.now() + "\',2)"
+              request.session['adminName'] + " has added students in batches.\',\'" + getTime.now() + "\',2)"
         try:
             # 添加到操作日志
             cur.execute(log)
@@ -1035,11 +1074,13 @@ def studenttoupdate(request):
 def delstudent(request):
     student_id = request.GET["student_id"]
     studentname = request.GET["student_name"]
-    deltea = "delete from student where id = "+student_id
+    delstu = "delete from student where id = "+student_id
+    delstu2 = "delete from statistics where id = "+student_id
     log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the student: "+studentname+"\',\'"+getTime.now()+"\',3)"
     try:
         # 执行sql语句
-        cur.execute(deltea)
+        cur.execute(delstu)
+        cur.execute(delstu2)
         # 添加到操作日志
         cur.execute(log)
         # 提交到数据库执行
@@ -1364,10 +1405,11 @@ def classtoupdate(request):
 def delclass(request):
     class_id = request.GET["class_id"]
     delcl = "delete from class where id = "+class_id
-    # 出了删除班级 还需要 删除学生， 删除 这个班的课程  删这个班的违规
+    # 出了删除班级 还需要 删除学生， 删除 这个班的课程  删这个班的违规 删这个班的统计表
     delstu = "delete from student where class_id = "+class_id
     delsub = "delete from curriculum where class_id = "+class_id
     delperfor = "delete from performance where class_id = "+class_id
+    delstatistics = "delete from statistics where class_id = " + class_id
     classname = request.GET["class_name"]
     log = "insert into log(admin,content,date,level) values(\'"+request.session['adminName']+"\',\'ADMIN:"+request.session['adminName']+" delete the classname: "+classname+" and more\',\'"+getTime.now()+"\',3)"
 
@@ -1377,6 +1419,7 @@ def delclass(request):
         cur.execute(delstu)
         cur.execute(delsub)
         cur.execute(delperfor)
+        cur.execute(delstatistics)
         # 添加到操作日志
         cur.execute(log)
         # 提交到数据库执行

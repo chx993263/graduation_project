@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html xmlns="http://www.w3.org/1999/html">
+<!--<html xmlns="http://www.w3.org/1999/html">-->
+<html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>请登录</title>
+		<link rel="icon" href="{% static 'images/njit.png' %}" type="image/x-icon" />
 		<link id='theme' rel='stylesheet' href="{% static 'humane/themes/original.css' %}" />
 		<script src="{% static 'humane/humane.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 		<script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
-
+	<script language="JavaScript">
+		if (window != top)
+		top.location.href = location.href;
+	</script>
 	</head>
 	<body>
 		<form action='/index/' method='POST' >
@@ -16,7 +21,7 @@
 				<div class="content clearfix">
 					<div class="content-left">
 						<div class="logo">
-							<img src="../static/images/logo.jpg" alt=""/>
+							<img src="../static/images/logo.png" alt=""/>
 							<p>南京工程学院考勤管理系统</p>
 						</div>
 					</div>
@@ -26,12 +31,12 @@
 							<h2>用户登录/LOGIN</h2>
 							<div class="account clearfix">
 								<span>账　号：</span>
-								<input type="text" name="username" id="username"  value="" />
+								<input type="text" name="username" id="username"  value="{{adminName}}" placeholder="cai" onfocus="this.placeholder=''" onblur="this.placeholder='cai'" maxlength="12" minlength="2"/>
 								<span id="usermsg" style="color: red;"></span>
 							</div>
 							<div class="password clearfix">
 								<span>密　码：</span>
-								<input type="text" name="password" id="password" value="" />
+								<input type="text" name="password" id="password" value="" placeholder="123456" onfocus="this.placeholder=''" onblur="this.placeholder='123456'" maxlength="16" minlength="6"/>
 								<span id="pwdmsg" style="color: red;"></span>
 							</div>
 							<div class="btn">
@@ -46,9 +51,11 @@
 		<script type="text/javascript">
 			var msg = {{ msg|safe }};
 			if(msg == 'fail'){
-				humane("账号或密码错误！请重新登录");
+				humane("密码错误！请重新输入");
 			}else if(msg == 'logout'){
-				humane("身份可能已过期，请重新登录");
+				humane("检测到您的身份可能已过期，请重新登录");
+			}else if(msg == 'noadmin'){
+				humane("查无此用户，请重新登录");
 			}
 		</script>
 	</body>

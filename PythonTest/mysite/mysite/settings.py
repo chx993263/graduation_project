@@ -25,7 +25,7 @@ SECRET_KEY = '=vx3x#-#!!k345-vj4gk)7o=(1^crc9ni_bgmm+ieec%o18j2-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 APPEND_SLASH=False
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mysite.middleware.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -128,7 +129,11 @@ STATICFILES_DIRS = [
     ("js", os.path.join(STATIC_ROOT, 'js')),
     ("json", os.path.join(STATIC_ROOT, 'json')),
     ("humane", os.path.join(STATIC_ROOT, 'humane')),
+    ("media", os.path.join(STATIC_ROOT, 'media')),
 ]
+
+# MEDIA_URL = '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'static/media')
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # 引擎
 SESSION_CACHE_ALIAS = 'default'  # 使用的缓存别名（默认内存缓存，也可以是memcache），此处别名依赖缓存的设置

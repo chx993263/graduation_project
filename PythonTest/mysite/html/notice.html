@@ -90,8 +90,9 @@
 
         <tr class="thead_tr"><td style="padding-left: 10px;font-weight: bold">批量选择</td><td style="font-weight: bold">学生</td><td style="font-weight: bold">所在班级</td><td style="font-weight: bold">课程</td><td style="font-weight: bold">行为</td><td style="font-weight: bold">时间</td><td style="font-weight: bold">图片</td><td style="font-weight: bold">操作</td></tr>
         <tbody>
+            <!--定义block,撰写基本模板，说明这边有需要重定义的内容-->
             {% block article %}
-
+                <!-- for循环，对后台传过来的noticeList进行遍历操作，item为其子集合的值-->
                 {% for item in noticeList %}
                     <tr data-tt-id="0" data-tt-parent-id="0">
                             <td style="padding-left: 10px;"><span class="file"><input type="checkbox" name="ids" value="{{item.0}}" ></span></td>
@@ -164,7 +165,7 @@
             area: ['60%', '60%'],
             shadeClose: true,
             closeBtn: 1,
-            content: 'showimg.html',
+            content: 'showimg.html?id='+id,
             //iframe的url
             end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
                 location.reload();　　//layer.open关闭刷新
@@ -178,7 +179,9 @@
             return false;
         }
         if (confirm("确定删除所选项目?")) {
+            //首先定义一个集合用来存储需要批量删除的checkbox中的id
             var checkedList = new Array();
+            //对所有的已选中的多选框进行遍历获取并将id存到上面定义的集合中
             $("input[name='ids']:checked").each(function () {
                 checkedList.push($(this).val());
             });
@@ -189,6 +192,8 @@
                 datatype: "html",
                 success: function () {
                     alert("删除成功！！！")
+                    //进行清空操作
+                    $("input[name='ids']").prop("checked",false);
                     location.reload();//页面刷新
                 },
                 error: function () {

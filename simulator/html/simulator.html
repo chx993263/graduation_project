@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟监控系统</title>
+</head>
+<script type="text/javascript" src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+<script type="text/javascript">
+    function showstudent(){
+        class_id = $('#class option:selected').val();
+        $.getJSON("getstudents",{
+            "class_id":class_id
+                        },function(data){
+            $("#student").html("");
+            var students = data;
+            var res = "";
+            for(var i = 0;i<students.length;i++){
+                res += "<option value="+students[i][0]+">"+students[i][1]+"</option>";
+            }
+            $("#student").append(res);
+        });
+        $.getJSON("getcurriculums",{
+            "class_id":class_id
+                        },function(data){
+            $("#curriculum").html("");
+            var curriculums = data;
+            var res = "";
+            for(var i = 0;i<curriculums.length;i++){
+                res += "<option value="+curriculums[i][0]+">"+"第"+curriculums[i][1]+"学年，第"+curriculums[i][2]+"学期，周"+curriculums[i][3]+"，第"+curriculums[i][4]+"节课---"+curriculums[i][5]+"</option>";
+            }
+            $("#curriculum").append(res);
+        });
+    }
+
+    function add() {
+        classid = $("[name = classid]").val();
+        studentid = $("[name = studentid]").val();
+        curriculumid = $("[name = curriculumid]").val();
+        actid = $("[name = actid]").val();
+        $.ajax({
+            type:"get",
+            url:"addtestdata",
+            data:{"classid":classid,"studentid":studentid,"curriculumid":curriculumid,"actid":actid},
+            dataType:'text',  //提交的数据类型
+            cache: false,
+            success:function(result){
+                if(result == "success"){
+                    alert("添加测试数据成功！");
+                }else{
+                    alert("添加失败，请尝试重新添加！")
+                }
+            },
+            error:function (result) {
+                alert("发生未知错误，请重新提交！");
+            }
+        })
+    }
+</script>
+<body>
+<form >
+    <h1>模拟监控系统</h1>
+    所在班级：<select name="classid" id="class" onchange="showstudent()">
+            <option value="0">--可选择班级--</option>
+            {% block classes %}
+                {% for item in classList %}
+                    <option value="{{item.0}}"{% if item.0 == classid %} selected="selected"{% endif %}>{{item.1}}</option>
+                {% endfor %}
+            {% endblock %}
+        </select></div>
+    请确定学生:<select id="student" name="studentid" style="width: 100px">
+  				<option>--请选择学生--</option>
+  			</select>
+    请选择课程：<select id="curriculum" name="curriculumid" style="width: 350px">
+  				<option>--请选择课程--</option>
+  			</select>
+
+    <br/>请选择处罚方式：<select name="actid">
+            <option value="0">--可选择行为--</option>
+            {% block actlist %}
+                {% for act in actList %}
+                    <option value="{{act.0}}"{% if act.0 == actid %} selected="selected"{% endif %}>{{act.1}}</option>
+                {% endfor %}
+            {% endblock %}
+        </select>
+    <br/><input class="tabe_btn " type="button" onclick="add()" value="add"></input>
+</form>
+</body>
+</html>

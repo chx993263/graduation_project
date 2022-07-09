@@ -12,7 +12,8 @@
 /*    .layui-layer-title{background:url("{% static 'images/righttitlebig.png' %}") repeat-x;font-weight:bold;color:#46647e;
         border:1px solid #c1d3de;height: 33px;line-height: 33px;}*/
 </style>
-<title>OA管理系统</title>
+<title>考勤后台管理系统</title>
+<link rel="icon" href="{% static 'images/njit.png' %}" type="image/x-icon" />
 </head>
 <body>
 <div id="container">
@@ -44,7 +45,7 @@
                         <ul class="subnav">
                             <li><a href="work.html" target="right">操作日志</a></li>
                             <li><a href="absence.html" target="right">缺勤记录</a></li>
-                            <li><a href="mesage.html" target="right">我的信息</a></li>
+                            <li><a href="notice.html" target="right">异常行为</a></li>
                             <li><a href="schedule.html" target="right">课程管理</a></li>
 
 
@@ -71,8 +72,14 @@
                     </li>
 
 
-                    <li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>违纪通告</span><i class="icon"></i></a></div></li>
+                    <!--<li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>违纪通告</span><i class="icon"></i></a></div></li>-->
+                    <li class="news_m"><div class="nav-header"><a href="JavaScript:;" class="ue-clear"><span>违纪通告</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="absence.html" target="right">缺勤记录</a></li>
+                            <li><a href="notice.html" target="right">异常行为</a></li>
 
+                        </ul>
+                    </li>
 
 
 
@@ -144,10 +151,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-    var msg = {{ msg|safe }};
-    if(msg == 'success'){
-        humane("登录成功！");
-    }
 </script>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/core.js' %}"></script>

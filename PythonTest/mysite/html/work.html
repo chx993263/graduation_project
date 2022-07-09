@@ -118,7 +118,11 @@
                 datatype: "html",
                 success: function () {
                     alert("删除成功！！！")
+                    //进行清空操作
+                    $("input[name='ids']").prop("checked",false);
                     location.reload();//页面刷新
+
+
                 },
                 error: function () {
                     alert("删除失败，请重试！")

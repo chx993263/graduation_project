@@ -99,22 +99,9 @@ urlpatterns = [
     path("index/updatebehavior", view.updatebehavior),
     path("index/behaviortoupdate", view.behaviortoupdate),
 
-
-
-
     path("index/calendar.html", view.calendar),
-
-
-    path("index/behavior_tail.html", view.behavior_tail),
-
-    path("index/login.html", view.login),
-
-
-
-
-
-
-
+    # path("index/behavior_tail.html", view.behavior_tail),
+    path("index/login.html", view.logout),
     path("index/success", view.success),
 
 
